@@ -6,10 +6,6 @@
 	padding: 1rem;
 }
 
-.heroLeft img {
-	border-radius: 12px;
-}
-
 .heroRight {
 	max-width: 500px;
 }
@@ -47,15 +43,5 @@
 	}
 	.heroRight p {
 		font-size: 18px;
-	}
-
-	.heroLeft img {
-		width: 80%;
-		height: auto;
-		margin-bottom: 1.5rem;
-	}
-
-	.heroLight {
-		max-width: 100%;
 	}
 }

@@ -1,0 +1,42 @@
+.factsSection {
+  padding: 60px 20px;
+	max-width: 1400px;
+	margin: auto;
+  text-align: center;
+}
+
+.factsSection h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #4a2b20;
+}
+
+.factsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.factCard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.factCard:hover {
+  transform: translateY(-4px);
+}
+
+.factCard h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #ed932d;
+}
+
+.factCard p {
+  font-size: 16px;
+  color: #333;
+}

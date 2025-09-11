@@ -1,17 +1,23 @@
-"use client";
-
-import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "@/assets/images/logo.png";
+import NavLink from "@/components/NavLink/NavLink";
+import MobMenu from "@/components/MobMenu/MobMenu";
 import styles from "./NavBar.module.css";
-import ToggleButton from "@/components/ToggleButton/ToggleButton";
+
+type NavLinkType = {
+	href: string;
+	label: string;
+};
+
+const navLinks: NavLinkType[] = [
+	{ href: "/", label: "Головна" },
+	{ href: "/recipes", label: "Рецепти" },
+	{ href: "/login", label: "Вхід" },
+	{ href: "/register", label: "Реєстрація" },
+];
 
 export default function Navbar() {
-	const [menuOpen, setMenuOpen] = useState(false);
-	const toggleMenu = () => setMenuOpen(!menuOpen);
-	const closeMenu = () => setMenuOpen(false);
-
 	return (
 		<header className={styles.header}>
 			<Link href="/" className={styles.logo}>
@@ -19,29 +25,15 @@ export default function Navbar() {
 				<span>Кавові рецепти</span>
 			</Link>
 
-			<ToggleButton toggleMenu={toggleMenu} />
+			<MobMenu navLinks={navLinks} />
 
 			<nav className={styles.desktopNav}>
-				<Link href="/">Головна</Link>
-				<Link href="/recipes">Рецепти</Link>
-				<Link href="/login">Вхід</Link>
-				<Link href="/register">Реєстрація</Link>
+				{navLinks.map((link) => (
+					<NavLink key={link.href} href={link.href}>
+						{link.label}
+					</NavLink>
+				))}
 			</nav>
-
-			{menuOpen && (
-	<>
-		<div className={styles.mobileOverlay} onClick={closeMenu}></div>
-		<div className={styles.mobileMenu}>
-			<nav>
-				<Link href="/" onClick={closeMenu}>Головна</Link>
-				<Link href="/recipes" onClick={closeMenu}>Рецепти</Link>
-				<Link href="/login" onClick={closeMenu}>Вхід</Link>
-				<Link href="/register" onClick={closeMenu}>Реєстрація</Link>
-			</nav>
-		</div>
-	</>
-)}
-
 		</header>
 	);
 }

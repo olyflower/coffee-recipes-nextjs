@@ -1,0 +1,15 @@
+.navLink {
+	font-size: 28px;
+	color: #4a2b20;
+	text-decoration: none;
+	transition: font-size 0.2s, transform 0.2s;
+}
+
+.navLink.active {
+	font-weight: 600;
+	transform: translateY(-2px);
+}
+
+.navLink:hover {
+	transform: translateY(-1px);
+}

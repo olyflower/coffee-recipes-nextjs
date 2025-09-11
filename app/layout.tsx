@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Balsamiq_Sans } from "next/font/google";
 import Navbar from "@/components/NavBar/NavBar";
+import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
 const balsamiq = Balsamiq_Sans({
@@ -24,8 +25,8 @@ export default function RootLayout({
 		<html lang="uk">
 			<body className={`${balsamiq.variable}`}>
 				<Navbar />
-
 				<main>{children}</main>
+				<Footer/>
 			</body>
 		</html>
 	);
