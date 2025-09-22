@@ -5,7 +5,7 @@ export default function Footer() {
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.container}>
-				<p>Кавові рецепти – ваш гід у світі кави ☕</p>
+				<p className={styles.title}>Кавові рецепти – ваш гід у світі кави ☕</p>
 
 				<div className={styles.links}>
 					<Link href="/recipes">Рецепти</Link>
