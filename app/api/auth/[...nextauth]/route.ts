@@ -3,14 +3,16 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
+const clientId = process.env.GOOGLE_CLIENT_ID;
+const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
+if (!clientId || !clientSecret) {
+	throw new Error("Google OAuth environment variables are not set properly");
+}
+
 export const authOptions: NextAuthOptions = {
 	adapter: PrismaAdapter(prisma),
-	providers: [
-		GoogleProvider({
-			clientId: process.env.GOOGLE_CLIENT_ID!,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-		}),
-	],
+	providers: [GoogleProvider({ clientId, clientSecret })],
 	session: {
 		strategy: "database",
 	},

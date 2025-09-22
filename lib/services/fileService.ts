@@ -8,12 +8,18 @@ import {
 	ALLOWED_IMAGE_EXTENSIONS,
 } from "@/lib/constants/constants";
 
+const region = process.env.AWS_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+const bucketName = process.env.AWS_BUCKET_NAME;
+
+if (!region || !accessKeyId || !secretAccessKey || !bucketName) {
+	throw new Error("AWS environment variables are not set properly");
+}
+
 const s3 = new S3Client({
-	region: process.env.AWS_REGION!,
-	credentials: {
-		accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-	},
+	region,
+	credentials: { accessKeyId, secretAccessKey },
 });
 
 type FileLike = {
@@ -34,7 +40,7 @@ export async function uploadFileToS3(file: FileLike): Promise<string> {
 		}
 		const originalName = file.name || "file.jpg";
 		const extension = originalName.includes(".")
-			? originalName.split(".").pop()!.toLowerCase()
+			? originalName.split(".").pop()?.toLowerCase() ?? "jpg"
 			: "jpg";
 
 		if (!ALLOWED_IMAGE_EXTENSIONS.includes(extension)) {
@@ -48,13 +54,13 @@ export async function uploadFileToS3(file: FileLike): Promise<string> {
 
 		const buffer = Buffer.from(await file.arrayBuffer());
 		const command = new PutObjectCommand({
-			Bucket: process.env.AWS_BUCKET_NAME!,
+			Bucket: bucketName,
 			Key: fileName,
 			Body: buffer,
 			ContentType: file.type || `image/${extension}`,
 		});
 		await s3.send(command);
-		return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
+		return `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`;
 	} catch (error) {
 		console.error("Failed to upload file to S3:", error);
 		throw error;
