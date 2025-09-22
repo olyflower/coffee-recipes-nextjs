@@ -1,40 +1,33 @@
+import { CoffeeFact } from "@/lib/types";
+import { getFacts } from "@/lib/services/factsService";
 import styles from "./Facts.module.css";
 
-const facts = [
-  {
-    id: 1,
-    title: "Кава – другий напій у світі",
-    text: "Після води, кава є найпопулярнішим напоєм у світі.",
-  },
-  {
-    id: 2,
-    title: "Батьківщина кави",
-    text: "Вважається, що кава походить з Ефіопії, де її вперше почали вирощувати у IX столітті.",
-  },
-  {
-    id: 3,
-    title: "Кавові зерна – це не зерна",
-    text: "Насправді це кісточки ягід кавового дерева.",
-  },
-  {
-    id: 4,
-    title: "Найдорожча кава",
-    text: "Копі Лувак — найдорожча кава, яка виробляється з зерен, що пройшли через шлунок циветти.",
-  },
-];
+export default async function CoffeeFacts() {
+	let facts: CoffeeFact[] = [];
 
-export default function CoffeeFacts() {
-  return (
-    <section className={styles.factsSection}>
-      <h2>Цікаві факти про каву</h2>
-      <div className={styles.factsGrid}>
-        {facts.map((fact) => (
-          <div key={fact.id} className={styles.factCard}>
-            <h3>{fact.title}</h3>
-            <p>{fact.text}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+	try {
+		facts = await getFacts();
+	} catch (error) {
+		console.error("Failed to fetch coffee facts:", error);
+	}
+
+	return (
+		<section className={styles.container}>
+			<h2 className={styles.title}>Цікаві факти про каву</h2>
+			{!facts || facts.length === 0 ? (
+				<p className={styles.text}>
+					На жаль, наразі немає доступних фактів
+				</p>
+			) : (
+				<div className={styles.cards}>
+					{facts.map((fact) => (
+						<div key={fact.id} className={styles.card}>
+							<h3 className={styles.subtitle}>{fact.title}</h3>
+							<p className={styles.text}>{fact.description}</p>
+						</div>
+					))}
+				</div>
+			)}
+		</section>
+	);
 }

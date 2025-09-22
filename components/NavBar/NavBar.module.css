@@ -2,32 +2,51 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 32px 48px;
+	padding: 20px 42px;
 }
 
 .logo {
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	gap: 0.5rem;
-	font-size: 28px;
 }
 
 .logo:hover {
 	text-decoration: none;
 }
 
-.desktopNav {
-	display: flex;
-	gap: 1rem;
+.title {
+	font-size: 18px;
 }
 
-.desktopNav a {
-	font-size: 28px;
+.desktop {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.desktop a {
+	font-size: 18px;
 	transition: color 0.3s, transform 0.2s;
 }
 
+.links {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
+	justify-content: flex-end;
+}
+
+.mobile {
+	position: absolute;
+	right: 24px;
+}
+
 @media (max-width: 900px) {
-	.desktopNav {
+	.desktop {
+		display: none;
+	}
+	.google {
 		display: none;
 	}
 
@@ -35,7 +54,7 @@
 		padding: 16px 24px;
 	}
 
-	.logo {
+	.title {
 		font-size: 18px;
 	}
 

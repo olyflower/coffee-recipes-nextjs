@@ -7,15 +7,12 @@ export default function Footer() {
 			<div className={styles.container}>
 				<p>Кавові рецепти – ваш гід у світі кави ☕</p>
 
-				<div className={styles.navLinks}>
+				<div className={styles.links}>
 					<Link href="/recipes">Рецепти</Link>
-					<Link href="/facts">Цікаві факти</Link>
-					<Link href="/about">Про нас</Link>
+					<Link href="/about">Про проект</Link>
 				</div>
 
-				<p className={styles.copy}>
-					© {new Date().getFullYear()} Кавові рецепти
-				</p>
+				<p>© {new Date().getFullYear()} Кавові рецепти</p>
 			</div>
 		</footer>
 	);

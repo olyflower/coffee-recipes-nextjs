@@ -6,8 +6,8 @@ import { StaticImageData } from "next/image";
 import styles from "./Slideshow.module.css";
 
 type SlideshowProps = {
-  images: { src: string | StaticImageData; alt: string }[];
-  interval?: number;
+	images: { src: string | StaticImageData; alt: string }[];
+	interval?: number;
 };
 
 export default function Slideshow({ images, interval = 3000 }: SlideshowProps) {

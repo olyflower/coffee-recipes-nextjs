@@ -1,107 +1,68 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import Link from "next/link";
+import { getRecipes } from "../../lib/services/recipesService.server";
+import { CoffeeRecipe } from "@/lib/types";
+import { getSession } from "@/lib/services/authService";
 import styles from "./page.module.css";
-import Coffee1 from "@/assets/images/espresso.jpg";
-import Coffee2 from "@/assets/images/latte.jpg";
-import Coffee3 from "@/assets/images/matcha.jpg";
 
-type Recipe = {
-	id: number;
-	title: string;
-	description: string;
-	image: StaticImageData;
-	steps: string[];
-};
+export default async function Recipes() {
+	let recipes: CoffeeRecipe[] = [];
+	let session = null;
 
-const recipes: Recipe[] = [
-	{
-		id: 1,
-		title: "Еспресо",
-		description: "Класичний міцний кавовий напій.",
-		image: Coffee1,
-		steps: ["Змолоти каву.", "Заповнити портфільтр.", "Зробити еспресо."],
-	},
-	{
-		id: 2,
-		title: "Латте",
-		description: "М’яка кава з молоком і пінкою.",
-		image: Coffee2,
-		steps: [
-			"Приготувати еспресо.",
-			"Збити молоко до пінки.",
-			"Змішати еспресо та молоко.",
-		],
-	},
-	{
-		id: 3,
-		title: "Матча",
-		description: "Зелений чай з ніжним смаком.",
-		image: Coffee3,
-		steps: [
-			"Розмішати порошок матча з гарячою водою.",
-			"Збити до піни.",
-			"Налити в чашку і насолоджуватись.",
-		],
-	},
-	{
-		id: 4,
-		title: "Капучино",
-		description: "Класика з пінкою та какао.",
-		image: Coffee1,
-		steps: [
-			"Приготувати еспресо.",
-			"Збити молоко до пінки.",
-			"Посипати какао.",
-		],
-	},
-	{
-		id: 5,
-		title: "Американо",
-		description: "М’який кавовий напій з водою.",
-		image: Coffee2,
-		steps: ["Приготувати еспресо.", "Додати гарячу воду.", "Перемішати."],
-	},
-	{
-		id: 6,
-		title: "Мокко",
-		description: "Кава з шоколадом та молоком.",
-		image: Coffee3,
-		steps: [
-			"Приготувати еспресо.",
-			"Додати гарячий шоколад.",
-			"Збити молоко та додати піну.",
-		],
-	},
-];
+	try {
+		recipes = await getRecipes();
+		session = await getSession();
+	} catch (error) {
+		console.error("Failed to fetch recipes:", error);
+	}
 
-export default function Recipes() {
+	const isLoggedIn = Boolean(session?.user);
+
 	return (
-		<main className={styles.recipesPage}>
-			<h1>Кавові рецепти</h1>
-			<div className={styles.recipesGrid}>
-				{recipes.map((recipe) => (
-					<div key={recipe.id} className={styles.recipeCard}>
-						<Image
-							src={recipe.image}
-							alt={recipe.title}
-							width={300}
-							height={280}
-							className={styles.recipeImage}
-						/>
-						<h2>{recipe.title}</h2>
-						<p>{recipe.description}</p>
-						<ol>
-							{recipe.steps.map((step, index) => (
-								<li key={index}>{step}</li>
-							))}
-						</ol>
-					</div>
-				))}
-			</div>
+		<main className={styles.container}>
+			<h1 className={styles.title}>Кавові рецепти</h1>
 
-			<div className={styles.ctaWrapper}>
-				<a href="/add-recipe" className={styles.ctaButton}>
+			{recipes.length === 0 ? (
+				<p className={styles.title}>
+					Наразі немає доступних рецептів.
+				</p>
+			) : (
+				<div className={styles.recipes}>
+					{recipes.map((recipe) => (
+						<Link
+							key={recipe.id}
+							href={`/recipes/${recipe.id}`}
+							className={styles.card}
+						>
+							<div className={styles.wrapper}>
+								<Image
+									src={
+										recipe.photoUrl || "/images/default.jpg"
+									}
+									alt={recipe.title}
+									fill
+									sizes="(max-width:480px) 80vw, (max-width:768px) 50vw, 300px"
+									className={styles.image}
+								/>
+							</div>
+
+							<h2>{recipe.title}</h2>
+							<p>{recipe.description}</p>
+						</Link>
+					))}
+				</div>
+			)}
+
+			<div className={styles.cta}>
+				<Link href="/add-recipe" className={styles.btn}>
 					Додай свій рецепт кави
-				</a>
+				</Link>
+
+				{!isLoggedIn && (
+					<p className={styles.notice}>
+						Щоб додати рецепт, увійдіть через Google.
+					</p>
+				)}
 			</div>
 		</main>
 	);

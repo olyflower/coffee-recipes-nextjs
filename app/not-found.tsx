@@ -1,15 +1,15 @@
 import Link from "next/link";
-import styles from "./NotFound.module.css";
+import styles from "./not-found.module.css";
 
 export default function NotFound() {
-  return (
-    <div className={styles.container}>
-      <h1>404</h1>
-      <h2>Сторінку не знайдено</h2>
-      <p>На жаль, такої сторінки не існує. Спробуйте повернутися на головну.</p>
-      <Link href="/" className={styles.homeLink}>
-        Повернутись на головну
-      </Link>
-    </div>
-  );
+	return (
+		<section className={styles.container}>
+			<h1 className={styles.error}>404</h1>
+			<p>Сторінку не знайдено</p>
+			<p>На жаль, такої сторінки не існує</p>
+			<Link href="/" className={styles.link}>
+				Повернутись на головну
+			</Link>
+		</section>
+	);
 }

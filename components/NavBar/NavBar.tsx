@@ -1,8 +1,11 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/assets/images/logo.png";
-import NavLink from "@/components/NavLink/NavLink";
+import Logo from "@/public/images/logo.svg";
 import MobMenu from "@/components/MobMenu/MobMenu";
+import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
 import styles from "./NavBar.module.css";
 
 type NavLinkType = {
@@ -13,27 +16,36 @@ type NavLinkType = {
 const navLinks: NavLinkType[] = [
 	{ href: "/", label: "Головна" },
 	{ href: "/recipes", label: "Рецепти" },
-	{ href: "/login", label: "Вхід" },
-	{ href: "/register", label: "Реєстрація" },
+	{ href: "/about", label: "Про проект" },
 ];
 
 export default function Navbar() {
+	const { data: session } = useSession();
+	const isAdmin = session?.user?.isAdmin ?? false;
+
 	return (
 		<header className={styles.header}>
 			<Link href="/" className={styles.logo}>
-				<Image src={Logo} alt="Кава" width={64} height={64} priority />
-				<span>Кавові рецепти</span>
+				<Image src={Logo} alt="Кава" width={48} height={48} />
+				<span className={styles.title}>Кавові рецепти</span>
 			</Link>
 
-			<MobMenu navLinks={navLinks} />
-
-			<nav className={styles.desktopNav}>
-				{navLinks.map((link) => (
-					<NavLink key={link.href} href={link.href}>
-						{link.label}
-					</NavLink>
-				))}
-			</nav>
+			<div className={styles.mobile}>
+				<MobMenu navLinks={navLinks} />
+			</div>
+			<div className={styles.links}>
+				<nav className={styles.desktop}>
+					{navLinks.map((link) => (
+						<Link key={link.href} href={link.href}>
+							{link.label}
+						</Link>
+					))}
+					{isAdmin && <Link href="/admin">Адмінка</Link>}
+				</nav>
+				<div className={styles.google}>
+					<GoogleAuthButton />
+				</div>
+			</div>
 		</header>
 	);
 }

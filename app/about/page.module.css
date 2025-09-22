@@ -1,0 +1,70 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+}
+
+.title {
+	margin: 0 0 20px 0;
+}
+
+.text {
+	margin-bottom: 16px;
+	max-width: 700px;
+}
+
+.container ul {
+	list-style: none;
+	padding: 0;
+	margin: 12px 0;
+	text-align: left;
+	max-width: 700px;
+}
+
+.container li {
+	position: relative;
+	padding-left: 28px;
+	margin-bottom: 8px;
+}
+
+.container li::before {
+	content: "☕";
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: var(--color-button-hover);
+}
+
+.link {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: var(--color-button-hover);
+	color: var(--color-white);
+	border-radius: 8px;
+	text-decoration: none;
+	transition: background-color 0.2s ease;
+	margin-top: 40px;
+}
+
+.link:hover {
+	background-color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+	.title {
+		font-size: 24px;
+	}
+
+	.text {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+
+	.container ul {
+		max-width: 100%;
+		font-size: 14px;
+	}
+}

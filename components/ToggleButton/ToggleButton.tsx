@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import styles from "./ToggleButton.module.css";
 
 type ToggleButtonProps = {
@@ -10,7 +9,7 @@ type ToggleButtonProps = {
 export default function ToggleButton({ toggleMenu }: ToggleButtonProps) {
 	return (
 		<button
-			className={styles.toggleButton}
+			className={styles.toggle}
 			onClick={toggleMenu}
 			aria-label="Toggle menu"
 		>
@@ -19,8 +18,8 @@ export default function ToggleButton({ toggleMenu }: ToggleButtonProps) {
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
-				width={28}
-				height={28}
+				width={42}
+				height={42}
 			>
 				<path
 					strokeLinecap="round"

@@ -1,0 +1,56 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.form input[type="text"],
+.form textarea,
+.form input[type="file"] {
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid var(--color-background-second);
+	font-size: 16px;
+	font-family: inherit;
+}
+
+.form input[type="text"]:focus,
+.form textarea:focus,
+.form input[type="file"]:focus {
+	outline: none;
+	border-color: var(--color-button-hover);
+}
+
+.form textarea[name="steps"] {
+	min-height: 250px;
+	resize: vertical;
+}
+
+.file {
+	padding: 10px;
+}
+.error {
+	color: var(--color-red);
+	background: var(--color-background-second);
+	padding: 10px;
+	border-radius: 6px;
+	margin-bottom: 8px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	background-color: var(--color-button-hover);
+	color: var(--color-white);
+	font-weight: bold;
+	border-radius: 8px;
+	border: none;
+	text-decoration: none;
+	transition: background-color 0.3s;
+	margin: auto;
+	font-family: inherit;
+}
+
+.btn:hover {
+	background-color: var(--color-text);
+}

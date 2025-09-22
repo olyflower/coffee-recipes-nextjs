@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+	margin-top: 48px;
+}
+
+.error {
+	font-size: 56px;
+}
+
+.link {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: var(--color-button-hover);
+	color: var(--color-white);
+	border-radius: 8px;
+	text-decoration: none;
+	transition: background-color 0.2s ease;
+}
+
+.link:hover {
+	background-color: var(--color-text);
+}

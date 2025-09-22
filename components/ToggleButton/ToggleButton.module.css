@@ -1,13 +1,13 @@
-.toggleButton {
-  display: block;
+.toggle {
+	display: block;
 	background: none;
 	border: none;
 	cursor: pointer;
-	color: #4a2b20;
+	color: var(--color-text);
 }
 
-@media (min-width: 768px) {
-  .toggleButton {
-    display: none;
-  }
+@media (min-width: 901px) {
+	.toggle {
+		display: none;
+	}
 }
