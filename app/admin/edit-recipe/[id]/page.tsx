@@ -19,7 +19,7 @@ export default async function EditRecipePage({ params }: Props) {
 
 	return (
 		<main className={styles.wrapper}>
-			<h1>{recipe ? "Редагування рецепту" : "Рецепт не знайдено"}</h1>
+			<h1>{recipe ? "Edit recipe" : "Recipe not found"}</h1>
 			{recipe && <EditRecipeForm recipe={recipe} />}
 		</main>
 	);

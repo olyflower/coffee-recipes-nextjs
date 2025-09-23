@@ -25,31 +25,31 @@ export default function AddRecipeForm() {
 
 	return (
 		<form onSubmit={handleSubmit} className={styles.form}>
-			<input 
+			<input
 				type="text"
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
-				placeholder="Назва рецепту"
+				placeholder="Name of the recipe"
 				required
 			/>
 			<textarea
 				value={description}
 				onChange={(e) => setDescription(e.target.value)}
-				placeholder="Опис"
+				placeholder="Description"
 				required
 			/>
 			<textarea
 				value={steps}
 				onChange={(e) => setSteps(e.target.value)}
-				placeholder="Рецепт приготування"
+				placeholder="Cooking recipe"
 				required
 			/>
 			<input type="file" accept="image/*" onChange={handleFileChange} />
-			{fileName && <p className={styles.file}>Файл: {fileName}</p>}
+			{fileName && <p className={styles.file}>File: {fileName}</p>}
 			{fileError && <p className={styles.error}>{fileError}</p>}
 			{error && <p className={styles.error}>{error}</p>}
 			<button className={styles.btn} type="submit" disabled={!!fileError}>
-				Зберегти рецепт
+				Save the recipe
 			</button>
 		</form>
 	);

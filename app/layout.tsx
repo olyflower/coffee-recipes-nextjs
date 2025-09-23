@@ -12,14 +12,14 @@ const balsamiq = Balsamiq_Sans({
 });
 
 export const metadata: Metadata = {
-	title: "Кавові рецепти",
+	title: "Coffee recipes",
 	description:
-		"Сайт з кавовими рецептами для любителів кави. Класичні та унікальні рецепти, покрокові інструкції.",
+		"Website with coffee recipes for coffee lovers. Classic and unique recipes, step-by-step instructions.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang="uk">
+		<html lang="en">
 			<body className={`${balsamiq.variable}`}>
 				<SessionProviderWrapper>
 					<main>{children}</main>

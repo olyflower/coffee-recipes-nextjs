@@ -14,9 +14,9 @@ type NavLinkType = {
 };
 
 const navLinks: NavLinkType[] = [
-	{ href: "/", label: "Головна" },
-	{ href: "/recipes", label: "Рецепти" },
-	{ href: "/about", label: "Про проект" },
+	{ href: "/", label: "Home" },
+	{ href: "/recipes", label: "Recipes" },
+	{ href: "/about", label: "About" },
 ];
 
 export default function Navbar() {
@@ -27,7 +27,7 @@ export default function Navbar() {
 		<header className={styles.header}>
 			<Link href="/" className={styles.logo}>
 				<Image src={Logo} alt="Кава" width={48} height={48} />
-				<span className={styles.title}>Кавові рецепти</span>
+				<span className={styles.title}>Coffee recipes</span>
 			</Link>
 
 			<div className={styles.mobile}>
@@ -40,7 +40,7 @@ export default function Navbar() {
 							{link.label}
 						</Link>
 					))}
-					{isAdmin && <Link href="/admin">Адмінка</Link>}
+					{isAdmin && <Link href="/admin">Admin</Link>}
 				</nav>
 				<div className={styles.google}>
 					<GoogleAuthButton />

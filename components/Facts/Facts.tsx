@@ -13,10 +13,10 @@ export default async function CoffeeFacts() {
 
 	return (
 		<section className={styles.container}>
-			<h2 className={styles.title}>Цікаві факти про каву</h2>
+			<h2 className={styles.title}>Interesting facts about coffee</h2>
 			{!facts || facts.length === 0 ? (
 				<p className={styles.text}>
-					На жаль, наразі немає доступних фактів
+					There are currently no facts available
 				</p>
 			) : (
 				<div className={styles.cards}>

@@ -20,11 +20,11 @@ export default async function Recipes() {
 
 	return (
 		<main className={styles.container}>
-			<h1 className={styles.title}>Кавові рецепти</h1>
+			<h1 className={styles.title}>Coffee recipes</h1>
 
 			{recipes.length === 0 ? (
 				<p className={styles.title}>
-					Наразі немає доступних рецептів.
+					There are currently no recipes available
 				</p>
 			) : (
 				<div className={styles.recipes}>
@@ -55,12 +55,12 @@ export default async function Recipes() {
 
 			<div className={styles.cta}>
 				<Link href="/add-recipe" className={styles.btn}>
-					Додай свій рецепт кави
+					Add your coffee recipe
 				</Link>
 
 				{!isLoggedIn && (
 					<p className={styles.notice}>
-						Щоб додати рецепт, увійдіть через Google.
+						To add a recipe, sign in with Google
 					</p>
 				)}
 			</div>

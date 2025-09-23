@@ -37,14 +37,13 @@ export default async function RecipePage({ params }: Props) {
 				</>
 			) : (
 				<>
-					<h1 className={styles.title}>Рецепт не знайдено</h1>
-					<p>Цей рецепт не існує або був видалений.</p>
+					<h1 className={styles.title}>Recipe not found</h1>
 				</>
 			)}
 
 			<div className={styles.btn}>
 				<Link href="/recipes" className={styles.link}>
-					Назад до списку рецептів
+					Back to recipe list
 				</Link>
 			</div>
 		</main>

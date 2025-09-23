@@ -5,14 +5,16 @@ export default function Footer() {
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.container}>
-				<p className={styles.title}>Кавові рецепти – ваш гід у світі кави ☕</p>
+				<p className={styles.title}>
+					Coffee recipes – your guide to the world of coffee ☕
+				</p>
 
 				<div className={styles.links}>
-					<Link href="/recipes">Рецепти</Link>
-					<Link href="/about">Про проект</Link>
+					<Link href="/recipes">Recipes</Link>
+					<Link href="/about">About</Link>
 				</div>
 
-				<p>© {new Date().getFullYear()} Кавові рецепти</p>
+				<p>© {new Date().getFullYear()} Coffee recipes</p>
 			</div>
 		</footer>
 	);

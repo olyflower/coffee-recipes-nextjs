@@ -6,9 +6,9 @@ import hero3 from "@/public/images/default.jpg";
 import styles from "./Hero.module.css";
 
 const images = [
-	{ src: hero1, alt: "Латте" },
-	{ src: hero2, alt: "Флет Вайт" },
-	{ src: hero3, alt: "Еспрессо" },
+	{ src: hero1, alt: "Latte" },
+	{ src: hero2, alt: "Flet White" },
+	{ src: hero3, alt: "Espresso" },
 ];
 
 export default async function Hero() {
@@ -19,13 +19,13 @@ export default async function Hero() {
 			</div>
 
 			<div className={styles.right}>
-				<h1>Завітай у світ кавових смаків!</h1>
+				<h1>Welcome to the world of coffee flavors!</h1>
 				<p>
-					Готуй каву як справжній бариста — просто вдома, зі смаком і
-					натхненням
+					Make coffee like a real barista — right at home, with taste
+					and inspiration
 				</p>
 				<Link href="/recipes" className={styles.btn}>
-					Рецепти
+					Recipes
 				</Link>
 			</div>
 		</section>

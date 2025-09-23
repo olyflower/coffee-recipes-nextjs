@@ -24,9 +24,9 @@ export default function AdminRecipesList({ initialRecipes }: Props) {
 
 	return (
 		<section className={styles.container}>
-			<h1 className={styles.title}>Адмінка: рецепти</h1>
+			<h1 className={styles.title}>Admin panel: recipes</h1>
 			{recipes.length === 0 ? (
-				<p>Немає рецептів</p>
+				<p>There are no recipes</p>
 			) : (
 				<ul className={styles.recipes}>
 					{recipes.map((recipe) => (
@@ -38,14 +38,14 @@ export default function AdminRecipesList({ initialRecipes }: Props) {
 									href={`/admin/edit-recipe/${recipe.id}`}
 									className={styles.btn}
 								>
-									Редагувати
+									Edit
 								</Link>
 
 								<button
 									className={styles.btn}
 									onClick={() => handleDelete(recipe.id)}
 								>
-									Видалити
+									Delete
 								</button>
 							</div>
 						</li>

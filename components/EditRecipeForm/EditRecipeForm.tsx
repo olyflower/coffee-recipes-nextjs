@@ -54,11 +54,11 @@ export default function EditRecipeForm({ recipe }: Props) {
 				required
 			/>
 			<input type="file" accept="image/*" onChange={handleFileChange} />
-			{fileName && <p>Файл: {fileName}</p>}
+			{fileName && <p>File: {fileName}</p>}
 			{fileError && <p className={styles.error}>{fileError}</p>}
 			{error && <p className={styles.error}>{error}</p>}
 			<button type="submit" disabled={!!fileError}>
-				Зберегти зміни
+				Save
 			</button>
 		</form>
 	);

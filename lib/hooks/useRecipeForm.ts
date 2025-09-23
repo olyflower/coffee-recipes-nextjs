@@ -44,7 +44,7 @@ export function useRecipeForm({
 		const extension = selectedFile.name.split(".").pop()?.toLowerCase();
 		if (!extension || !ALLOWED_IMAGE_EXTENSIONS.includes(extension)) {
 			setFileError(
-				`Непідтримуваний формат файлу. Дозволено: ${ALLOWED_IMAGE_EXTENSIONS.join(
+				`Unsupported file format. Allowed: ${ALLOWED_IMAGE_EXTENSIONS.join(
 					", "
 				)}`
 			);
@@ -56,7 +56,7 @@ export function useRecipeForm({
 
 		if (selectedFile.size > MAX_FILE_SIZE) {
 			setFileError(
-				`Файл занадто великий. Максимум ${Math.round(
+				`File is too large. Maximum: ${Math.round(
 					MAX_FILE_SIZE / 1024
 				)} KB.`
 			);
@@ -85,7 +85,7 @@ export function useRecipeForm({
 			await onSubmit(formData);
 			if (redirectUrl) router.push(redirectUrl);
 		} catch (err: any) {
-			setError(err.message || "Сталася помилка.");
+			setError(err.message || "Eror");
 		}
 	};
 

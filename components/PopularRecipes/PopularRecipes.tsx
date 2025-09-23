@@ -8,9 +8,9 @@ export default async function PopularRecipes() {
 
 	return (
 		<section className={styles.popular}>
-			<h2 className={styles.title}>Популярні рецепти</h2>
+			<h2 className={styles.title}>Popular recipes</h2>
 			{!recipes || recipes.length === 0 ? (
-				<p>На жаль, наразі немає доступних рецептів</p>
+				<p>There are currently no recipes availableв</p>
 			) : (
 				<div className={styles.grid}>
 					{recipes.map((recipe) => (
@@ -27,10 +27,7 @@ export default async function PopularRecipes() {
 									alt={recipe.title}
 									fill
 									sizes="(max-width: 480px) 80vw, (max-width: 768px) 50vw, 300px"
-									style={{
-										objectFit: "cover",
-										borderRadius: "8px",
-									}}
+									className={styles.image}
 									priority
 								/>
 							</div>

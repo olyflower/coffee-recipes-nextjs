@@ -12,7 +12,7 @@ export default async function AddRecipePage() {
 
 	return (
 		<main className={styles.wrapper}>
-			<h1>Додати рецепт</h1>
+			<h1>Add a recipe</h1>
 			<AddRecipeForm />
 		</main>
 	);

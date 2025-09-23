@@ -42,7 +42,7 @@ export default function MobMenu({ navLinks }: MobMenuProps) {
 							))}
 							{isAdmin && (
 								<Link href="/admin" onClick={closeMenu}>
-									Адмінка
+									Admin
 								</Link>
 							)}
 						</nav>
