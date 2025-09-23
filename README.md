@@ -1,25 +1,25 @@
 # Coffee Recipes ☕️
 
-Навчальний проєкт на Next.js для створення та перегляду рецептів кави, а також для ознайомлення з цікавими фактами про каву. Адміністратори можуть редагувати та видаляти рецепти.
+A Next.js educational project for creating and viewing coffee recipes, as well as learning interesting facts about coffee. Administrators can edit and delete recipes.
 
-## Функціональність
+## Functionality
 
--   Створення та перегляд рецептів кави
--   Редагування та видалення рецептів для адміністраторів
--   Завантаження фотографій (AWS S3)
--   Авторизація через Google (NextAuth.js)
--   Адаптивний дизайн для мобільних пристроїв
+-   Create and view coffee recipes
+-   Editing and deleting recipes for administrators
+-   Uploading photos (AWS S3)
+-   Authorization via Google (NextAuth.js)
+-   Responsive design for mobile devices
 
-## Використані технології
+## Technologies
 
 -   [Next.js](https://nextjs.org) + React
 -   TypeScript
 -   Prisma + Supabase / PostgreSQL
--   NextAuth.js для авторизації
--   CSS-модулі
--   AWS S3 для збереження зображень
--   [Vercel](https://vercel.com) для деплою
+-   for authorization
+-   CSS modules
+-   AWS S3 for storing images
+-   [Vercel](https://vercel.com) for depoy
 
-## Деплой
+## Deploy
 
-Проєкт розгорнуто на Vercel
+Project is deployed on Vercel
