@@ -14,6 +14,10 @@ export default function AdminRecipesList({ initialRecipes }: Props) {
 	const [recipes, setRecipes] = useState(initialRecipes);
 
 	const handleDelete = async (id: number) => {
+		const confirmed = window.confirm(
+			"Are you sure you want to delete this recipe?"
+		);
+		if (!confirmed) return;
 		try {
 			await deleteRecipe(id);
 			setRecipes((prev) => prev.filter((r) => r.id !== id));

@@ -38,21 +38,6 @@
 	color: var(--color-button-hover);
 }
 
-.link {
-	display: inline-block;
-	padding: 12px 24px;
-	background-color: var(--color-button-hover);
-	color: var(--color-white);
-	border-radius: 8px;
-	text-decoration: none;
-	transition: background-color 0.2s ease;
-	margin-top: 40px;
-}
-
-.link:hover {
-	background-color: var(--color-text);
-}
-
 @media (max-width: 768px) {
 	.title {
 		font-size: 24px;

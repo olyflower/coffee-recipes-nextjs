@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/components/Button/Button";
 import styles from "./page.module.css";
 
 export default function About() {
@@ -34,10 +34,7 @@ export default function About() {
 				<li>AWS S3</li>
 				<li>Vercel</li>
 			</ul>
-
-			<Link href="/" className={styles.link}>
-				Return to home page
-			</Link>
+			<Button href="/" text="Return to home page" />
 		</main>
 	);
 }

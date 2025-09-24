@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Slideshow from "@/components/Slideshow/Slideshow";
+import Button from "@/components/Button/Button";
 import hero1 from "@/public/images/latte.jpg";
 import hero2 from "@/public/images/flat.jpg";
 import hero3 from "@/public/images/default.jpg";
@@ -24,9 +24,7 @@ export default async function Hero() {
 					Make coffee like a real barista — right at home, with taste
 					and inspiration
 				</p>
-				<Link href="/recipes" className={styles.btn}>
-					Recipes
-				</Link>
+				<Button href="/recipes" text="Recipes" />
 			</div>
 		</section>
 	);

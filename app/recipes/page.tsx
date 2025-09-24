@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 import { getRecipes } from "../../lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import { getSession } from "@/lib/services/authService";
@@ -54,9 +55,7 @@ export default async function Recipes() {
 			)}
 
 			<div className={styles.cta}>
-				<Link href="/add-recipe" className={styles.btn}>
-					Add your coffee recipe
-				</Link>
+				<Button href="/add-recipe" text="Add your coffee recipe" />
 
 				{!isLoggedIn && (
 					<p className={styles.notice}>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Button from "@/components/Button/Button";
 import { getRecipeById } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
@@ -42,9 +42,7 @@ export default async function RecipePage({ params }: Props) {
 			)}
 
 			<div className={styles.btn}>
-				<Link href="/recipes" className={styles.link}>
-					Back to recipe list
-				</Link>
+				<Button href="/recipes" text="Back to recipes" />
 			</div>
 		</main>
 	);
