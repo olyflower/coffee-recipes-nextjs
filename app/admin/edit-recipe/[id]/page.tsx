@@ -4,11 +4,11 @@ import { getRecipeById } from "@/lib/services/recipesService.server";
 import EditRecipeForm from "@/components/EditRecipeForm/EditRecipeForm";
 import styles from "@/app/add-recipe/page.module.css";
 
-export default async function EditRecipePage({
-	params,
-}: {
+interface PageProps {
 	params: { id: string };
-}) {
+}
+
+export default async function EditRecipePage({ params }: PageProps) {
 	const session = await getSession();
 	const recipe = await getRecipeById(Number(params.id));
 
