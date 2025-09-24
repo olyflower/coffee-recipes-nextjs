@@ -4,14 +4,13 @@ import { getRecipeById } from "@/lib/services/recipesService.server";
 import EditRecipeForm from "@/components/EditRecipeForm/EditRecipeForm";
 import styles from "@/app/add-recipe/page.module.css";
 
-interface Props {
-  params: { id: string } | Promise<{ id: string }>;
-}
-
-export default async function EditRecipePage({ params }: Props) {
+export default async function EditRecipePage({
+	params,
+}: {
+	params: { id: string };
+}) {
 	const session = await getSession();
-	const { id } = await params;
-	const recipe = await getRecipeById(Number(id));
+	const recipe = await getRecipeById(Number(params.id));
 
 	if (!session?.user?.isAdmin) {
 		redirect("/");
