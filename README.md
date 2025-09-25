@@ -23,3 +23,4 @@ A Next.js educational project for creating and viewing coffee recipes, as well a
 ## Deploy
 
 Project is deployed on Vercel
+https://coffee-recipes-nextjs.vercel.app/
