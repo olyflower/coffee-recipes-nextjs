@@ -6,8 +6,9 @@ import styles from "@/app/add-recipe/page.module.css";
 
 
 export default async function EditRecipePage({ params }: any) {
+	const { id } = await params;
 	const session = await getSession();
-	const recipe = await getRecipeById(Number(params.id));
+	const recipe = await getRecipeById(Number(id));
 
 	if (!session?.user?.isAdmin) {
 		redirect("/");
