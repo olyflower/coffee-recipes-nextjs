@@ -5,7 +5,7 @@ import EditRecipeForm from "@/components/EditRecipeForm/EditRecipeForm";
 import styles from "@/app/add-recipe/page.module.css";
 
 
-export default async function EditRecipePage({ params }: any) {
+export default async function EditRecipePage({params}: {params: Promise<{ id: string }>}) {
 	const { id } = await params;
 	const session = await getSession();
 	const recipe = await getRecipeById(Number(id));

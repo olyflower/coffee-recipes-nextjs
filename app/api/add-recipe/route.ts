@@ -48,11 +48,11 @@ export async function POST(req: NextRequest) {
 		});
 
 		return NextResponse.json({ success: true, recipe: newRecipe });
-	} catch (error: any) {
-		{
+	} catch (error: unknown) {
+		if (error instanceof Error) {
 			console.error("add-recipe error:", error);
 			return NextResponse.json(
-				{ success: false, message: error.message || "Unknown error" },
+				{ success: false, message: error.message },
 				{ status: 500 }
 			);
 		}

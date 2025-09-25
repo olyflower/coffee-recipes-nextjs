@@ -84,8 +84,12 @@ export function useRecipeForm({
 		try {
 			await onSubmit(formData);
 			if (redirectUrl) router.push(redirectUrl);
-		} catch (err: any) {
-			setError(err.message || "Eror");
+		} catch (err: unknown) {
+			if (err instanceof Error) {
+				setError(err.message);
+			} else {
+				setError("Unknown error occurred");
+			}
 		}
 	};
 

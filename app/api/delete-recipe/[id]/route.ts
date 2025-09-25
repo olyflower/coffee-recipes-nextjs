@@ -5,7 +5,7 @@ import { deleteS3Object, getS3KeyFromUrl } from "@/lib/services/fileService";
 
 const bucketName = process.env.AWS_BUCKET_NAME!;
 
-export async function DELETE(_: NextRequest, context: any) {
+export async function DELETE(req: NextRequest) {
 	try {
 		const session = await getSession();
 
@@ -15,8 +15,10 @@ export async function DELETE(_: NextRequest, context: any) {
 				{ status: 403 }
 			);
 		}
-		const params = await context.params;
-		const id = Number(params.id);
+		const url = new URL(req.url);
+		const segments = url.pathname.split("/").filter(Boolean);
+		const idStr = segments.at(-1);
+		const id = idStr ? Number(idStr) : NaN;
 
 		if (isNaN(id)) {
 			return NextResponse.json(

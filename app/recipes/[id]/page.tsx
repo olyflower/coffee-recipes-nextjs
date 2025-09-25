@@ -4,7 +4,7 @@ import { getRecipeById } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
 
-export default async function RecipePage({ params }: any) {
+export default async function RecipePage( {params}: {params: Promise<{ id: string }>}) {
 	const { id } = await params;
 
 	let recipe: CoffeeRecipe | null = null;
