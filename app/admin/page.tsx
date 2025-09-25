@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/services/authService";
 import { getRecipes } from "@/lib/services/recipesService.server";

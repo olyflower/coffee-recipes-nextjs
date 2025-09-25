@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { redirect } from "next/navigation";
 import AddRecipeForm from "@/components/AddRecipeForm/AddRecipeForm";
 import { getSession } from "@/lib/services/authService";
