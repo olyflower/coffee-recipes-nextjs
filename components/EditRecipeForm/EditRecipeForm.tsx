@@ -1,64 +1,117 @@
 "use client";
-import styles from "./EditRecipeForm.module.css";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { editRecipe } from "@/lib/services/recipesService.client";
-import { useRecipeForm } from "@/lib/hooks/useRecipeForm";
+import { validateImageFile } from "@/lib/validators/inputValidator";
 import { CoffeeRecipe } from "@/lib/types";
+import styles from "./EditRecipeForm.module.css";
+
+interface FormValues {
+	id: number;
+	title: string;
+	description: string;
+	steps: string;
+	photo?: FileList;
+	useDefaultPhoto?: boolean;
+}
 
 interface Props {
 	recipe: CoffeeRecipe;
 }
 
 export default function EditRecipeForm({ recipe }: Props) {
+	const router = useRouter();
+
 	const {
-		title,
-		setTitle,
-		description,
-		setDescription,
-		steps,
-		setSteps,
-		fileName,
-		fileError,
-		error,
-		handleFileChange,
+		register,
 		handleSubmit,
-	} = useRecipeForm({
-		initialValues: {
+		setValue,
+		formState: { errors, isSubmitting },
+	} = useForm<FormValues>({
+		defaultValues: {
 			id: recipe.id,
 			title: recipe.title,
 			description: recipe.description,
 			steps: recipe.steps,
+			useDefaultPhoto: false,
 		},
-
-		onSubmit: async (formData) => {
-			await editRecipe(formData);
-		},
-		redirectUrl: "/recipes",
 	});
 
+	const onSubmit: SubmitHandler<FormValues> = async (data) => {
+		try {
+			const formData = new FormData();
+			formData.append("id", data.id.toString());
+			formData.append("title", data.title);
+			formData.append("description", data.description);
+			formData.append("steps", data.steps);
+
+			if (data.photo?.[0] && !data.useDefaultPhoto) {
+				formData.append("photo", data.photo[0]);
+			} else {
+				formData.append("useDefaultPhoto", "true");
+			}
+
+			await editRecipe(formData);
+			router.push("/recipes");
+		} catch (err) {
+			console.error("Failed to edit recipe", err);
+		}
+	};
+
 	return (
-		<form onSubmit={handleSubmit} className={styles.form}>
+		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 			<input
+				{...register("title", { required: "Title is required" })}
 				type="text"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-				required
+				placeholder="Recipe title"
 			/>
+			{errors.title && (
+				<p className={styles.error}>{errors.title.message}</p>
+			)}
+
 			<textarea
-				value={description}
-				onChange={(e) => setDescription(e.target.value)}
-				required
+				{...register("description", {
+					required: "Description is required",
+				})}
+				placeholder="Description"
 			/>
+			{errors.description && (
+				<p className={styles.error}>{errors.description.message}</p>
+			)}
+
 			<textarea
-				value={steps}
-				onChange={(e) => setSteps(e.target.value)}
-				required
+				{...register("steps", { required: "Steps are required" })}
+				placeholder="Steps"
 			/>
-			<input type="file" accept="image/*" onChange={handleFileChange} />
-			{fileName && <p>File: {fileName}</p>}
-			{fileError && <p className={styles.error}>{fileError}</p>}
-			{error && <p className={styles.error}>{error}</p>}
-			<button type="submit" disabled={!!fileError}>
-				Save
+			{errors.steps && (
+				<p className={styles.error}>{errors.steps.message}</p>
+			)}
+
+			<input
+				type="file"
+				accept="image/*"
+				{...register("photo", {
+					validate: (files) => {
+						const result = validateImageFile(files?.[0] ?? null);
+
+						if (result !== true) {
+							setValue("useDefaultPhoto", true);
+							return result;
+						}
+
+						setValue("useDefaultPhoto", false);
+						return true;
+					},
+				})}
+			/>
+
+			{errors.photo && (
+				<p className={styles.error}>{errors.photo.message}</p>
+			)}
+
+			<button type="submit" disabled={isSubmitting}>
+				{isSubmitting ? "Saving..." : "Save"}
 			</button>
 		</form>
 	);

@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import styles from "./GoogleAuthButton.module.css";
 
 export default function GoogleAuthButton() {
@@ -22,10 +23,11 @@ export default function GoogleAuthButton() {
 					onClick={() => signIn("google", { callbackUrl: "/" })}
 					className={styles.btn}
 				>
-					<img
+					<Image
 						src="https://www.svgrepo.com/show/355037/google.svg"
 						alt="Google"
-						className={styles.icon}
+						width={20}
+						height={20}
 					/>
 					Log in via Google
 				</button>

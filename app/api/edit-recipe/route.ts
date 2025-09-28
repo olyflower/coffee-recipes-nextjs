@@ -6,7 +6,10 @@ import {
 	deleteS3Object,
 	getS3KeyFromUrl,
 } from "@/lib/services/fileService";
-import { validateRecipeForm } from "@/lib/validators/recipesValidator";
+import {
+	validateField,
+	validateImageFile,
+} from "@/lib/validators/inputValidator";
 
 const bucketName = process.env.AWS_BUCKET_NAME!;
 
@@ -35,7 +38,12 @@ export async function PATCH(req: NextRequest) {
 			);
 		}
 
-		validateRecipeForm(title, description, steps, file);
+		validateField(title, description, steps);
+
+		const fileValidationResult = validateImageFile(file);
+		if (fileValidationResult !== true) {
+			throw new Error(fileValidationResult);
+		}
 
 		const recipeId = Number(id);
 		const recipe = await prisma.coffeeRecipe.findUnique({
@@ -47,6 +55,7 @@ export async function PATCH(req: NextRequest) {
 				{ status: 404 }
 			);
 		}
+		const useDefaultPhoto = formData.get("useDefaultPhoto") === "true";
 
 		let photoUrl = recipe.photoUrl;
 
@@ -56,6 +65,8 @@ export async function PATCH(req: NextRequest) {
 				if (oldKey) await deleteS3Object(bucketName, oldKey);
 			}
 			photoUrl = await uploadFileToS3(file);
+		} else if (useDefaultPhoto) {
+			photoUrl = "/images/default.jpg";
 		}
 
 		const updatedRecipe = await prisma.coffeeRecipe.update({

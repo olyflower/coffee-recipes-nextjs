@@ -18,6 +18,7 @@ export default function About() {
 			<ul>
 				<li>Users can create and view recipes</li>
 				<li>Admins can edit and delete recipes</li>
+				<li>Forms with validation are powered by React Hook Form</li>
 				<li>Photos are stored in the cloud (AWS S3)</li>
 				<li>Authorization via Google (NextAuth.js)</li>
 			</ul>
@@ -30,6 +31,7 @@ export default function About() {
 				<li>TypeScript</li>
 				<li>Prisma + Supabase / PostgreSQL</li>
 				<li>NextAuth.js</li>
+				<li>React Hook Form</li>
 				<li>CSS modules</li>
 				<li>AWS S3</li>
 				<li>Vercel</li>

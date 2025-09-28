@@ -1,54 +1,96 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import styles from "./AddRecipeForm.module.css";
 import { addRecipe } from "@/lib/services/recipesService.client";
-import { useRecipeForm } from "@/lib/hooks/useRecipeForm";
+import { validateImageFile } from "@/lib/validators/inputValidator";
+
+interface FormValues {
+	title: string;
+	description: string;
+	steps: string;
+	photo?: FileList;
+}
 
 export default function AddRecipeForm() {
+	const router = useRouter();
+
 	const {
-		title,
-		setTitle,
-		description,
-		setDescription,
-		steps,
-		setSteps,
-		fileName,
-		fileError,
-		error,
-		handleFileChange,
+		register,
 		handleSubmit,
-	} = useRecipeForm({
-		onSubmit: async (formData) => {
-			await addRecipe(formData);
+		formState: { errors, isSubmitting },
+	} = useForm<FormValues>({
+		defaultValues: {
+			title: "",
+			description: "",
+			steps: "",
 		},
-		redirectUrl: "/recipes",
 	});
 
+	const onSubmit: SubmitHandler<FormValues> = async (data) => {
+		try {
+			const formData = new FormData();
+			formData.append("title", data.title);
+			formData.append("description", data.description);
+			formData.append("steps", data.steps);
+
+			if (data.photo?.[0]) {
+				formData.append("photo", data.photo[0]);
+			}
+
+			await addRecipe(formData);
+			router.push("/recipes");
+		} catch (err) {
+			console.error("Failed to add recipe", err);
+		}
+	};
+
 	return (
-		<form onSubmit={handleSubmit} className={styles.form}>
+		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 			<input
 				type="text"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
 				placeholder="Name of the recipe"
-				required
+				{...register("title", { required: "Title is required" })}
 			/>
+			{errors.title && (
+				<p className={styles.error}>{errors.title.message}</p>
+			)}
+
 			<textarea
-				value={description}
-				onChange={(e) => setDescription(e.target.value)}
 				placeholder="Description"
-				required
+				{...register("description", {
+					required: "Description is required",
+				})}
 			/>
+			{errors.description && (
+				<p className={styles.error}>{errors.description.message}</p>
+			)}
+
 			<textarea
-				value={steps}
-				onChange={(e) => setSteps(e.target.value)}
 				placeholder="Cooking recipe"
-				required
+				{...register("steps", { required: "Steps are required" })}
 			/>
-			<input type="file" accept="image/*" onChange={handleFileChange} />
-			{fileName && <p className={styles.file}>File: {fileName}</p>}
-			{fileError && <p className={styles.error}>{fileError}</p>}
-			{error && <p className={styles.error}>{error}</p>}
-			<button className={styles.btn} type="submit" disabled={!!fileError}>
+			{errors.steps && (
+				<p className={styles.error}>{errors.steps.message}</p>
+			)}
+
+			<input
+				type="file"
+				accept="image/*"
+				{...register("photo", {
+					validate: (files) => validateImageFile(files?.[0]),
+				})}
+			/>
+
+			{errors.photo && (
+				<p className={styles.error}>{errors.photo.message}</p>
+			)}
+
+			<button
+				className={styles.btn}
+				type="submit"
+				disabled={isSubmitting || !!errors.photo}
+			>
 				Save the recipe
 			</button>
 		</form>

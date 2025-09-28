@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/services/authService";
-import { validateRecipeForm } from "@/lib/validators/recipesValidator";
+import { validateField, validateImageFile } from "@/lib/validators/inputValidator";
 import { uploadFileToS3 } from "@/lib/services/fileService";
 import { prisma } from "@/lib/prisma";
 import { ALLOWED_IMAGE_EXTENSIONS } from "@/lib/constants/constants";
@@ -21,7 +21,12 @@ export async function POST(req: NextRequest) {
 		const steps = formData.get("steps") as string | null;
 		const file = formData.get("photo") as File | null;
 
-		validateRecipeForm(title, description, steps, file);
+		validateField(title, description, steps);
+
+		const fileValidationResult = validateImageFile(file);
+		if (fileValidationResult !== true) {
+			throw new Error(fileValidationResult);
+		}
 
 		let photoUrl: string;
 		if (file && file.size > 0) {
