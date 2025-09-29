@@ -4,8 +4,9 @@
 	--color-text: #4a2b20;
 	--color-button-hover: rgba(237, 147, 45, 0.85);
 	--color-shadow: #dcfbff77;
+	--color-disable: #777777ff;
 	--color-white: #fff;
-	--color-red: #b00020;
+	--color-red: #d62700ff;
 }
 
 * {
@@ -42,6 +43,11 @@ h5,
 h6 {
 	margin: 0;
 	font-weight: 700;
+}
+
+button {
+  font-family: inherit;
+	font-weight: bold;
 }
 
 main {

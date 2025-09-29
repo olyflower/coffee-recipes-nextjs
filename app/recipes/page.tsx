@@ -2,8 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/Button/Button";
-import AddRecipeCheck from "@/components/AddRecipeCheck";
+import AddRecipeCheck from "@/components/AddRecipeCheck/AddRecipeCheck";
 import { getRecipes } from "../../lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
@@ -52,10 +51,7 @@ export default async function Recipes() {
 				</div>
 			)}
 
-			<div className={styles.cta}>
-				<Button href="/add-recipe" text="Add your coffee recipe" />
-				<AddRecipeCheck />
-			</div>
+			<AddRecipeCheck />
 		</main>
 	);
 }
