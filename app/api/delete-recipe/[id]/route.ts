@@ -37,6 +37,13 @@ export async function DELETE(req: NextRequest) {
 
 		if (recipe.photoUrl) {
 			const key = getS3KeyFromUrl(recipe.photoUrl);
+			console.log("Attempting to delete photo from S3:", {
+				recipeId: id,
+				photoUrl: recipe.photoUrl,
+				key,
+				bucket: bucketName,
+			});
+
 			if (key) await deleteS3Object(bucketName, key);
 		}
 
