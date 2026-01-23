@@ -1,6 +1,12 @@
-# Coffee Recipes ☕️
+# Coffee Recipes
 
-A Next.js educational project for creating and viewing coffee recipes, as well as learning interesting facts about coffee. Admin can edit and delete recipes.
+A Next.js educational project for creating and viewing coffee recipes, as well as learning interesting facts about coffee. 
+
+Admin can edit and delete recipes.
+
+<p>
+  <img src="./public/images/preview.png" alt="Coffee Recipes Preview" width="500" />
+</p>
 
 ## Functionality
 
