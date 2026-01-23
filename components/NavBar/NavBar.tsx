@@ -1,9 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/images/logo.svg";
+import { Coffee } from "lucide-react";
 import MobMenu from "@/components/MobMenu/MobMenu";
 import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
 import styles from "./NavBar.module.css";
@@ -26,7 +25,13 @@ export default function Navbar() {
 	return (
 		<header className={styles.header}>
 			<Link href="/" className={styles.logo}>
-				<Image src={Logo} alt="Кава" width={48} height={48} />
+				<div className={styles.logoBadge}>
+					<Coffee
+						size={28}
+						strokeWidth={1.8}
+						color="var(--color-accent)"
+					/>
+				</div>
 				<span className={styles.title}>Coffee recipes</span>
 			</Link>
 
@@ -47,5 +52,5 @@ export default function Navbar() {
 				</div>
 			</div>
 		</header>
-	);
+	); 
 }

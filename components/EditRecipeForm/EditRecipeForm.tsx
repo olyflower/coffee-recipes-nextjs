@@ -59,59 +59,76 @@ export default function EditRecipeForm({ recipe }: Props) {
 		}
 	};
 
-	return (
+	return ( 
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-			<input
-				{...register("title", { required: "Title is required" })}
-				type="text"
-				placeholder="Recipe title"
-			/>
-			{errors.title && (
-				<p className={styles.error}>{errors.title.message}</p>
-			)}
+			<h1 className={styles.title}>Edit recipe</h1>
+			<div className={styles.inputGroup}>
+				<input
+					{...register("title", {
+						required: "Title is required",
+					})}
+					type="text"
+					placeholder="Recipe title"
+				/>
+				{errors.title && (
+					<p className={styles.error}>{errors.title.message}</p>
+				)}
+			</div>
 
-			<textarea
-				{...register("description", {
-					required: "Description is required",
-				})}
-				placeholder="Description"
-			/>
-			{errors.description && (
-				<p className={styles.error}>{errors.description.message}</p>
-			)}
+			<div className={styles.inputGroup}>
+				<textarea
+					{...register("description", {
+						required: "Description is required",
+					})}
+					placeholder="Description (brief summary)"
+				/>
+				{errors.description && (
+					<p className={styles.error}>{errors.description.message}</p>
+				)}
+			</div>
 
-			<textarea
-				{...register("steps", { required: "Steps are required" })}
-				placeholder="Steps"
-			/>
-			{errors.steps && (
-				<p className={styles.error}>{errors.steps.message}</p>
-			)}
+			<div className={styles.inputGroup}>
+				<textarea
+					{...register("steps", {
+						required: "Steps are required",
+					})}
+					placeholder="Cooking steps (detailed instructions)"
+				/>
+				{errors.steps && (
+					<p className={styles.error}>{errors.steps.message}</p>
+				)}
+			</div>
 
-			<input
-				type="file"
-				accept="image/*"
-				{...register("photo", {
-					validate: (files) => {
-						const result = validateImageFile(files?.[0] ?? null);
+			<div className={styles.fileInputGroup}>
+				<label className={styles.fileLabel}>Recipe Photo</label>
+				<input
+					type="file"
+					accept="image/*"
+					{...register("photo", {
+						validate: (files) => {
+							const result = validateImageFile(
+								files?.[0] ?? null,
+							);
+							if (result !== true) {
+								setValue("useDefaultPhoto", true);
+								return result;
+							}
+							setValue("useDefaultPhoto", false);
+							return true;
+						},
+					})}
+				/>
+				{errors.photo && (
+					<p className={styles.error}>{errors.photo.message}</p>
+				)}
+			</div>
 
-						if (result !== true) {
-							setValue("useDefaultPhoto", true);
-							return result;
-						}
-
-						setValue("useDefaultPhoto", false);
-						return true;
-					},
-				})}
-			/>
-
-			{errors.photo && (
-				<p className={styles.error}>{errors.photo.message}</p>
-			)}
-
-			<button type="submit" disabled={isSubmitting}>
-				{isSubmitting ? "Saving..." : "Save"}
+			<button
+				type="submit"
+				disabled={isSubmitting}
+				className={styles.submitBtn}
+			>
+				{isSubmitting ? "Saving..." : "Save Recipe"}
 			</button>
 		</form>
 	);

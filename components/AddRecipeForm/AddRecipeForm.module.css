@@ -1,57 +1,126 @@
 .form {
+	max-width: 800px;
+	margin: 60px auto 100px;
+	padding: 60px;
+	background-color: var(--color-background-soft);
+	border-radius: 60px;
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 24px;
+}
+
+.title {
+	font-size: 2.5rem;
+	text-align: center;
+	margin: 0;
 }
 
 .form input[type="text"],
-.form textarea,
-.form input[type="file"] {
-	padding: 10px;
-	border-radius: 8px;
-	border: 1px solid var(--color-background-second);
-	font-size: 16px;
-	font-family: inherit;
+.form textarea {
+	width: 100%;
+	padding: 18px 24px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 20px;
+	font-size: 1rem;
+	font-family: var(--font-body);
+	outline: none;
+	transition: all 0.3s ease;
 }
 
 .form input[type="text"]:focus,
-.form textarea:focus,
-.form input[type="file"]:focus {
-	outline: none;
-	border-color: var(--color-button-hover);
+.form textarea:focus {
+	background-color: var(--color-white);
+	border-color: var(--color-accent);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-.form textarea[name="steps"] {
-	min-height: 250px;
+.form textarea {
+	min-height: 140px;
 	resize: vertical;
+	line-height: 1.6;
 }
 
-.file {
-	padding: 10px;
+.form input[type="file"] {
+	padding: 10px 0;
+	font-family: var(--font-body);
+	font-size: 0.9rem;
+	color: var(--color-text-muted);
 }
+
+.form input[type="file"]::file-selector-button {
+	background-color: var(--color-white);
+	color: var(--color-text);
+	padding: 10px 20px;
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	margin-right: 16px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.form input[type="file"]::file-selector-button:hover {
+	background-color: var(--color-accent);
+	color: var(--color-white);
+	border-color: var(--color-accent);
+}
+
 .error {
-	color: var(--color-red);
-	background: var(--color-background-second);
-	padding: 10px;
-	border-radius: 6px;
-	margin-bottom: 8px;
-	font-size: 14px;
+	color: var(--color-error);
+	font-size: 0.85rem;
+	font-weight: 500;
+	margin-top: -16px;
+	margin-left: 12px;
 }
 
 .btn {
 	display: inline-block;
-	padding: 0.75rem 1.5rem;
-	background-color: var(--color-button-hover);
+	background-color: var(--color-accent);
 	color: var(--color-white);
-	font-weight: bold;
-	border-radius: 8px;
+	padding: 18px 44px;
+	border-radius: 100px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 	border: none;
-	text-decoration: none;
-	transition: background-color 0.3s;
-	margin: auto;
-	font-family: inherit;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	align-self: center;
+	margin-top: 10px;
+	min-width: 240px;
 }
 
-.btn:hover {
-	background-color: var(--color-text);
+.btn:hover:not(:disabled) {
+	background-color: var(--color-accent-hover);
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(237, 147, 45, 0.25);
+}
+
+.btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+	.form {
+		margin: 32px 16px 80px;
+		padding: 24px 20px;
+		border-radius: 40px;
+		gap: 20px;
+	}
+
+	.title {
+		font-size: 1.8rem;
+	}
+
+	.form input[type="text"],
+	.form textarea {
+		padding: 14px 18px;
+		border-radius: 16px;
+	}
+
+	.btn {
+		min-width: unset;
+	}
 }

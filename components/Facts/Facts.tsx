@@ -28,6 +28,6 @@ export default async function CoffeeFacts() {
 					))}
 				</div>
 			)}
-		</section>
+		</section> 
 	);
 }

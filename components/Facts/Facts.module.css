@@ -1,82 +1,91 @@
 .container {
-	padding: 60px 20px;
-	max-width: 1400px;
-	margin: auto;
+	padding: 60px 24px;
+	max-width: 1200px;
+	margin: 0 auto 100px;
+}
+
+.title {
+	font-size: 2.5rem;
+	margin-bottom: 48px;
 	text-align: center;
-	border-radius: 16px;
 }
 
 .cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(3, 1fr);
 	gap: 24px;
-	margin: 20px 0;
+	grid-auto-flow: dense;
 }
 
 .card {
-	background: var(--color-background-second);
-	border-radius: 12px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-	padding: 16px;
-	transition: transform 0.2s, box-shadow 0.2s;
+	background-color: var(--color-background-soft);
+	border-radius: 32px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: all 0.4s ease;
+	border: 1px solid transparent;
+}
+
+.card:nth-child(1) {
+	grid-column: span 2;
+}
+.card:nth-child(4) {
+	grid-column: span 2;
+}
+.card:nth-child(7) {
+	grid-column: span 2;
 }
 
 .card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.title {
-	margin-bottom: 10px;
-	font-size: 22px;
+	transform: translateY(-5px);
+	background-color: var(--color-white);
+	box-shadow: var(--shadow-medium);
+	border-color: var(--color-background-soft);
 }
 
 .subtitle {
-	margin: 12px 0 8px;
-	font-size: 20px;
-	color: var(--color-button-hover);
+	font-size: 1.5rem;
+	color: var(--color-accent);
+	margin-bottom: 12px;
 }
 
 .text {
-	font-size: 16px;
+	font-size: 1rem;
+	color: var(--color-text-muted);
+	margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+	.cards {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.card:nth-child(n) {
+		grid-column: span 1;
+	}
+
+	.card:nth-child(3n) {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 640px) {
 	.container {
-		padding: 40px 20px;
+		padding: 40px 16px;
 	}
-
 	.cards {
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 16px;
+		grid-template-columns: 1fr;
 	}
-}
-
-@media (max-width: 480px) {
-	.cards {
-		display: flex;
-		overflow-x: auto;
-		gap: 16px;
-		padding-bottom: 8px;
-		scroll-snap-type: x mandatory;
-		-webkit-overflow-scrolling: touch;
+	.card:nth-child(n) {
+		grid-column: span 1;
+		padding: 24px;
 	}
-
-	.cards::-webkit-scrollbar {
-		display: none;
-	}
-
-	.card {
-		flex: 0 0 80%;
-		scroll-snap-align: start;
-	}
-
 	.title {
-		font-size: 18px;
+		font-size: 1.8rem;
 	}
 
-	.text {
-		font-size: 14px;
-		line-height: 1.4;
+	.subtitle {
+		font-size: 1.2rem;
 	}
 }

@@ -43,10 +43,11 @@ export default function AddRecipeForm() {
 		} catch (err) {
 			console.error("Failed to add recipe", err);
 		}
-	};
+	}; 
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+			<h1 className={styles.title}>Add a recipe</h1>
 			<input
 				type="text"
 				placeholder="Name of the recipe"

@@ -51,5 +51,5 @@ export default function MobMenu({ navLinks }: MobMenuProps) {
 				</>
 			)}
 		</>
-	);
+	); 
 }

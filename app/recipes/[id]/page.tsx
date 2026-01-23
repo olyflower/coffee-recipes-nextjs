@@ -1,12 +1,15 @@
 import Image from "next/image";
-import Button from "@/components/Button/Button";
+import Link from "next/link";
 import { getRecipeById } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
 
-export default async function RecipePage( {params}: {params: Promise<{ id: string }>}) {
+export default async function RecipePage({
+	params,
+}: {
+	params: Promise<{ id: string }>;
+}) {
 	const { id } = await params;
-
 	let recipe: CoffeeRecipe | null = null;
 
 	try {
@@ -15,30 +18,45 @@ export default async function RecipePage( {params}: {params: Promise<{ id: strin
 		console.error("Failed to fetch recipe:", error);
 	}
 
+	if (!recipe) {
+		return (
+			<main className={styles.container}>
+				<h1 className={styles.title}>Recipe not found</h1>
+				<div className={styles.btnContainer}>
+					<Link href="/recipes" className={styles.backBtn}>
+						Back to recipes
+					</Link>
+				</div>
+			</main>
+		);
+	}
+
 	return (
 		<main className={styles.container}>
-			{recipe ? (
-				<>
-					<h1 className={styles.title}>{recipe.title}</h1>
-					<div className={styles.wrapper}>
-						<Image
-							src={recipe.photoUrl || "/images/default.jpg"}
-							alt={recipe.title}
-							fill
-							className={styles.image}
-							sizes="(max-width: 768px) 100vw, 800px"
-						/>
-					</div>
-					<div className={styles.steps}>{recipe.steps || ""}</div>
-				</>
-			) : (
-				<>
-					<h1 className={styles.title}>Recipe not found</h1>
-				</>
-			)}
+			<h1 className={styles.title}>{recipe.title}</h1>
 
-			<div className={styles.btn}>
-				<Button href="/recipes" text="Back to recipes" />
+			<div className={styles.wrapper}>
+				<Image
+					src={recipe.photoUrl || "/images/default.jpg"}
+					alt={recipe.title}
+					fill
+					priority
+					className={styles.image}
+					sizes="(max-width: 900px) 100vw, 900px"
+				/>
+			</div>
+
+			<div className={styles.steps}>
+				{recipe.description && (
+					<p className={styles.description}>{recipe.description}</p>
+				)}
+				{recipe.steps ? recipe.steps : "Instructions coming soon..."}
+			</div>
+
+			<div className={styles.btnContainer}>
+				<Link href="/recipes" className={styles.backBtn}>
+					← Back to recipes
+				</Link>
 			</div>
 		</main>
 	);

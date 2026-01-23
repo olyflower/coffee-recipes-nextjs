@@ -1,5 +1,5 @@
+import Link from "next/link";
 import Slideshow from "@/components/Slideshow/Slideshow";
-import Button from "@/components/Button/Button";
 import hero1 from "@/public/images/latte.jpg";
 import hero2 from "@/public/images/flat.jpg";
 import hero3 from "@/public/images/default.jpg";
@@ -14,18 +14,20 @@ const images = [
 export default async function Hero() {
 	return (
 		<section className={styles.hero}>
-			<div>
+			<div className={styles.slideshowWrapper}>
 				<Slideshow images={images} interval={3000} />
 			</div>
 
-			<div className={styles.right}>
+			<div className={styles.content}>
 				<h1>Welcome to the world of coffee flavors!</h1>
 				<p>
 					Make coffee like a real barista — right at home, with taste
-					and inspiration
+					and inspiration.
 				</p>
-				<Button href="/recipes" text="Recipes" />
+				<Link href="/recipes" className={styles.heroBtn}>
+					Explore Recipes
+				</Link>
 			</div>
 		</section>
 	);
-}
+} 

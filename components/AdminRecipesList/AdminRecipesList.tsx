@@ -15,7 +15,7 @@ export default function AdminRecipesList({ initialRecipes }: Props) {
 
 	const handleDelete = async (id: number) => {
 		const confirmed = window.confirm(
-			"Are you sure you want to delete this recipe?"
+			"Are you sure you want to delete this recipe?",
 		);
 		if (!confirmed) return;
 		try {
@@ -40,13 +40,13 @@ export default function AdminRecipesList({ initialRecipes }: Props) {
 							<div className={styles.btns}>
 								<Link
 									href={`/admin/edit-recipe/${recipe.id}`}
-									className={styles.btn}
+									className={`${styles.btn} ${styles.btnEdit}`}
 								>
 									Edit
 								</Link>
 
 								<button
-									className={styles.btn}
+									className={`${styles.btn} ${styles.btnDelete}`}
 									onClick={() => handleDelete(recipe.id)}
 								>
 									Delete

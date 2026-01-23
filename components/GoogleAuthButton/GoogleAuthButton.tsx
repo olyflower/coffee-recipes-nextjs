@@ -14,7 +14,10 @@ export default function GoogleAuthButton() {
 					<p className={styles.greeting}>
 						Hello, {session.user?.name}
 					</p>
-					<button onClick={() => signOut()} className={styles.btn}>
+					<button
+						onClick={() => signOut()}
+						className={`${styles.btn} ${styles.btnSignIn}`}
+					>
 						Log out
 					</button>
 				</>
@@ -33,5 +36,5 @@ export default function GoogleAuthButton() {
 				</button>
 			)}
 		</div>
-	);
+	); 
 }

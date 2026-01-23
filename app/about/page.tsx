@@ -1,42 +1,63 @@
-import Button from "@/components/Button/Button";
+import Link from "next/link";
 import styles from "./page.module.css";
+
+const technologies = [
+	{ name: "Next.js", url: "https://nextjs.org/" },
+	{ name: "TypeScript", url: "https://www.typescriptlang.org/" },
+	{ name: "Prisma", url: "https://www.prisma.io/" },
+	{ name: "PostgreSQL", url: "https://www.postgresql.org/" },
+	{ name: "NextAuth.js", url: "https://next-auth.js.org/" },
+	{ name: "AWS S3", url: "https://aws.amazon.com/s3/" },
+	{ name: "Vercel", url: "https://vercel.com/" },
+];
 
 export default function About() {
 	return (
 		<main className={styles.container}>
-			<h1 className={styles.title}>Coffee Recipes project</h1>
+			<section className={styles.hero}>
+				<h1 className={styles.title}>Coffee Recipes Project</h1>
+				<p className={styles.text}>
+					This educational project is created for those who love
+					coffee. Here you can share your passion, discover unique
+					brewing methods, and explore the rich culture of coffee.
+				</p>
+			</section>
 
-			<p className={styles.text}>
-				This educational project is created for those who love coffee.
-				Here you can add your own recipes, view ideas from other users,
-				and learn interesting facts about coffee.
-			</p>
+			<div className={styles.cards}>
+				<div className={styles.card}>
+					<h3>What is interesting</h3>
+					<ul>
+						<li>Users can create and view recipes</li>
+						<li>Admins can edit and delete recipes</li>
+						<li>Forms with validation (React Hook Form)</li>
+						<li>Cloud photo storage (AWS S3)</li>
+						<li>Secure Auth via Google</li>
+					</ul>
+				</div>
 
-			<p className={styles.text}>
-				<strong>What is interesting:</strong>
-			</p>
-			<ul>
-				<li>Users can create and view recipes</li>
-				<li>Admins can edit and delete recipes</li>
-				<li>Forms with validation are powered by React Hook Form</li>
-				<li>Photos are stored in the cloud (AWS S3)</li>
-				<li>Authorization via Google (NextAuth.js)</li>
-			</ul>
+				<div className={styles.card}>
+					<h3>Technologies</h3>
+					<div className={styles.techStack}>
+						{technologies.map((tech) => (
+							<a
+								key={tech.name}
+								href={tech.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={styles.techLink}
+							>
+								{tech.name}
+							</a>
+						))}
+					</div>
+				</div>
+			</div>
 
-			<p className={styles.text}>
-				<strong>Technologies:</strong>
-			</p>
-			<ul>
-				<li>Next.js + React</li>
-				<li>TypeScript</li>
-				<li>Prisma + Supabase / PostgreSQL</li>
-				<li>NextAuth.js</li>
-				<li>React Hook Form</li>
-				<li>CSS modules</li>
-				<li>AWS S3</li>
-				<li>Vercel</li>
-			</ul>
-			<Button href="/" text="Return to home page" />
+			<div className={styles.action}>
+				<Link href="/" className={styles.backBtn}>
+					Return to home page
+				</Link>
+			</div>
 		</main>
 	);
 }

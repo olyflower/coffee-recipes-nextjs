@@ -47,7 +47,7 @@ export default async function Recipes() {
 							<h2>{recipe.title}</h2>
 							<p>{recipe.description}</p>
 						</Link>
-					))}
+					))} 
 				</div>
 			)}
 
