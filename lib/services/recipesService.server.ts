@@ -1,6 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { CoffeeRecipe } from "@/lib/types";
 
+export type PaginatedRecipes = {
+	recipes: CoffeeRecipe[];
+	total: number;
+};
+
 export async function getPopularRecipes(limit = 3): Promise<CoffeeRecipe[]> {
 	try {
 		return await prisma.coffeeRecipe.findMany({
@@ -13,14 +18,25 @@ export async function getPopularRecipes(limit = 3): Promise<CoffeeRecipe[]> {
 	}
 }
 
-export async function getRecipes(): Promise<CoffeeRecipe[]> {
+export async function getRecipes(
+	page = 1,
+	limit = 6,
+): Promise<PaginatedRecipes> {
+	const skip = (page - 1) * limit;
+
 	try {
-		return await prisma.coffeeRecipe.findMany({
-			orderBy: { order: "asc" },
-		});
+		const [recipes, total] = await Promise.all([
+			prisma.coffeeRecipe.findMany({
+				skip: skip,
+				take: limit,
+				orderBy: { order: "asc" },
+			}),
+			prisma.coffeeRecipe.count(),
+		]);
+		return { recipes, total };
 	} catch (error) {
 		console.error("Failed to fetch coffee recipes:", error);
-		return [];
+		return { recipes: [], total: 0 };
 	}
 }
 

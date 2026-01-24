@@ -18,7 +18,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-	title: "Coffee recipes",
+	title: "Coffee Recipes | Classic & Unique Brews",
 	description:
 		"Website with coffee recipes for coffee lovers. Classic and unique recipes, step-by-step instructions.",
 	icons: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-	themeColor: "#faf9f6",
+	themeColor: "#6b5a54",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

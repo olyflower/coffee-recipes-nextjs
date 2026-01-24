@@ -6,7 +6,7 @@ import { getRecipes } from "@/lib/services/recipesService.server";
 import AdminRecipesList from "@/components/AdminRecipesList/AdminRecipesList";
 
 export default async function AdminRecipesPage() {
-	const recipes = await getRecipes();
+	const { recipes } = await getRecipes(1, 100);
 	const session = await getSession();
 
 	if (!session?.user?.isAdmin) {

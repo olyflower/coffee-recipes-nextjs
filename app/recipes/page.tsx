@@ -7,14 +7,27 @@ import { getRecipes } from "../../lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
 
-export default async function Recipes() {
+export default async function Recipes({
+	searchParams,
+}: {
+	searchParams: { page?: string };
+}) {
+	const resolvedParams = await searchParams;
+	const currentPage = Number(resolvedParams?.page) || 1;
+	const limit = 6;
+
 	let recipes: CoffeeRecipe[] = [];
+	let total = 0;
 
 	try {
-		recipes = await getRecipes();
+		const data = await getRecipes(currentPage, limit);
+		recipes = data.recipes;
+		total = data.total;
 	} catch (error) {
 		console.error("Failed to fetch recipes:", error);
 	}
+
+	const totalPages = Math.ceil(total / limit);
 
 	return (
 		<main className={styles.container}>
@@ -25,30 +38,71 @@ export default async function Recipes() {
 					There are currently no recipes available
 				</p>
 			) : (
-				<div className={styles.recipes}>
-					{recipes.map((recipe) => (
-						<Link
-							key={recipe.id}
-							href={`/recipes/${recipe.id}`}
-							className={styles.card}
-						>
-							<div className={styles.wrapper}>
-								<Image
-									src={
-										recipe.photoUrl || "/images/default.jpg"
-									}
-									alt={recipe.title}
-									fill
-									sizes="(max-width:480px) 80vw, (max-width:768px) 50vw, 300px"
-									className={styles.image}
-								/>
-							</div>
+				<>
+					<div className={styles.recipes}>
+						{recipes.map((recipe) => (
+							<Link
+								key={recipe.id}
+								href={`/recipes/${recipe.id}`}
+								className={styles.card}
+							>
+								<div className={styles.wrapper}>
+									<Image
+										src={
+											recipe.photoUrl ||
+											"/images/default.jpg"
+										}
+										alt={recipe.title}
+										fill
+										sizes="(max-width:480px) 80vw, (max-width:768px) 50vw, 300px"
+										className={styles.image}
+									/>
+								</div>
 
-							<h2>{recipe.title}</h2>
-							<p>{recipe.description}</p>
-						</Link>
-					))} 
-				</div>
+								<h2>{recipe.title}</h2>
+								<p>{recipe.description}</p>
+							</Link>
+						))}
+					</div>
+					{totalPages > 1 && (
+						<div className={styles.pagination}>
+							{currentPage > 1 ? (
+								<Link
+									href={`?page=${currentPage - 1}`}
+									className={styles.pageBtn}
+								>
+									← Previous
+								</Link>
+							) : (
+								<span
+									className={`${styles.pageBtn} ${styles.disabled}`}
+								>
+									← Previous
+								</span>
+							)}
+
+							<span className={styles.pageInfo}>
+								Page <strong>{currentPage}</strong> of{" "}
+								{totalPages}
+							</span>
+
+							{currentPage < totalPages ? (
+								<Link
+									href={`?page=${currentPage + 1}`}
+									className={styles.pageBtn}
+								>
+									Next →
+								</Link>
+							) : (
+								<span
+									className={`${styles.pageBtn} ${styles.disabled}`}
+								>
+									Next →
+								</span>
+							)}
+						</div>
+					)}
+				</>
 			)}
 
 			<AddRecipeCheck />
