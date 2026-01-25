@@ -18,12 +18,29 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://coffee-recipes-nextjs.vercel.app"),
+	alternates: {
+		canonical: "/",
+	},
 	title: "Coffee Recipes | Classic & Unique Brews",
 	description:
 		"Website with coffee recipes for coffee lovers. Classic and unique recipes, step-by-step instructions.",
+	keywords: [
+		"best coffee recipes",
+		"how to brew coffee at home",
+		"barista secrets",
+		"espresso guide",
+		"coffee making tips",
+	],
 	icons: {
 		icon: "/icon.svg",
 		apple: "/icon.svg",
+	},
+	openGraph: {
+		title: "Coffee Recipes | Classic & Unique Brews",
+		description: "Step-by-step coffee brewing guide.",
+		type: "website",
+		url: "https://coffee-recipes-nextjs.vercel.app",
 	},
 };
 
