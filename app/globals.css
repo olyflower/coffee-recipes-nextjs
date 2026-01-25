@@ -15,6 +15,9 @@
 
 	--font-heading: var(--font-playfair), serif;
 	--font-body: var(--font-montserrat), sans-serif;
+
+	--color-skeleton-base: #e9e5db;
+	--color-skeleton-shimmer: #f4f1ea;
 }
 
 * {
