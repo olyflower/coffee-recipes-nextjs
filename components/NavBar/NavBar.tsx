@@ -1,12 +1,10 @@
-"use client";
-
-import { useSession } from "next-auth/react";
 import { Suspense } from "react";
 import Link from "next/link";
 import { Coffee } from "lucide-react";
 import MobMenu from "@/components/MobMenu/MobMenu";
 import SearchBar from "../SearchBar/SearchBar";
 import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
+import AdminLink from "./AdminLink";
 import styles from "./NavBar.module.css";
 
 type NavLinkType = {
@@ -21,9 +19,6 @@ const navLinks: NavLinkType[] = [
 ];
 
 export default function Navbar() {
-	const { data: session } = useSession();
-	const isAdmin = session?.user?.isAdmin ?? false;
-
 	return (
 		<header className={styles.header}>
 			<Link href="/" className={styles.logo}>
@@ -40,6 +35,7 @@ export default function Navbar() {
 			<div className={styles.mobile}>
 				<MobMenu navLinks={navLinks} />
 			</div>
+
 			<div className={styles.links}>
 				<nav className={styles.desktop}>
 					{navLinks.map((link) => (
@@ -47,7 +43,7 @@ export default function Navbar() {
 							{link.label}
 						</Link>
 					))}
-					{isAdmin && <Link href="/admin">Admin</Link>}
+					<AdminLink />
 				</nav>
 				<Suspense
 					fallback={<div className={styles.searchPlaceholder} />}

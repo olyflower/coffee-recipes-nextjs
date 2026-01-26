@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: "/",
 	},
-	title: "Coffee Recipes | Classic & Unique Brews",
+	title: "Coffee Recipes",
 	description:
 		"Website with coffee recipes for coffee lovers. Classic and unique recipes, step-by-step instructions.",
 	keywords: [
