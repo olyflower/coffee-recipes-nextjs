@@ -1,9 +1,11 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { Coffee } from "lucide-react";
 import MobMenu from "@/components/MobMenu/MobMenu";
+import SearchBar from "../SearchBar/SearchBar";
 import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
 import styles from "./NavBar.module.css";
 
@@ -47,10 +49,15 @@ export default function Navbar() {
 					))}
 					{isAdmin && <Link href="/admin">Admin</Link>}
 				</nav>
+				<Suspense
+					fallback={<div className={styles.searchPlaceholder} />}
+				>
+					<SearchBar />
+				</Suspense>
 				<div className={styles.google}>
 					<GoogleAuthButton />
 				</div>
 			</div>
 		</header>
-	); 
+	);
 }

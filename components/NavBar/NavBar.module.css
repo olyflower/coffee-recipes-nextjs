@@ -71,8 +71,22 @@
 	right: 24px;
 }
 
+.searchPlaceholder {
+	width: 150px;
+	height: 36px;
+	background: var(--color-background-soft);
+	margin: 0 15px;
+	border-radius: 20px;
+	opacity: 0.5;
+}
+
+@media (max-width: 1100px) {
+	.desktop {
+		display: none;
+	}
+}
+
 @media (max-width: 900px) {
-	.desktop,
 	.google {
 		display: none;
 	}
@@ -94,5 +108,11 @@
 
 	.logo {
 		gap: 12px;
+	}
+
+	.searchPlaceholder {
+		width: 36px;
+		margin: 0 5px;
+		border-radius: 50%;
 	}
 }

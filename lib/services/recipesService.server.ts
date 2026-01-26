@@ -21,17 +21,30 @@ export async function getPopularRecipes(limit = 3): Promise<CoffeeRecipe[]> {
 export async function getRecipes(
 	page = 1,
 	limit = 6,
+	search?: string,
 ): Promise<PaginatedRecipes> {
 	const skip = (page - 1) * limit;
+
+	const whereCondition = search
+		? {
+				title: {
+					contains: search,
+					mode: "insensitive" as const,
+				},
+			}
+		: {};
 
 	try {
 		const [recipes, total] = await Promise.all([
 			prisma.coffeeRecipe.findMany({
+				where: whereCondition,
 				skip: skip,
 				take: limit,
 				orderBy: { order: "asc" },
 			}),
-			prisma.coffeeRecipe.count(),
+			prisma.coffeeRecipe.count({
+				where: whereCondition,
+			}),
 		]);
 		return { recipes, total };
 	} catch (error) {

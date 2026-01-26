@@ -10,17 +10,18 @@ import styles from "./page.module.css";
 export default async function Recipes({
 	searchParams,
 }: {
-	searchParams: { page?: string };
+	searchParams: { page?: string; search?: string };
 }) {
 	const resolvedParams = await searchParams;
 	const currentPage = Number(resolvedParams?.page) || 1;
+	const searchQuery = resolvedParams?.search || "";
 	const limit = 6;
 
 	let recipes: CoffeeRecipe[] = [];
 	let total = 0;
 
 	try {
-		const data = await getRecipes(currentPage, limit);
+		const data = await getRecipes(currentPage, limit, searchQuery);
 		recipes = data.recipes;
 		total = data.total;
 	} catch (error) {
@@ -29,9 +30,20 @@ export default async function Recipes({
 
 	const totalPages = Math.ceil(total / limit);
 
+	const createPageURL = (pageNumber: number) => {
+		const params = new URLSearchParams();
+		params.set("page", pageNumber.toString());
+		if (searchQuery) params.set("search", searchQuery);
+		return `?${params.toString()}`;
+	};
+
 	return (
 		<main className={styles.container}>
-			<h1 className={styles.title}>Coffee recipes</h1>
+			<h1 className={styles.title}>
+				{searchQuery
+					? `Results for "${searchQuery}"`
+					: "Coffee recipes"}
+			</h1>
 
 			{recipes.length === 0 ? (
 				<p className={styles.title}>
@@ -68,7 +80,7 @@ export default async function Recipes({
 						<div className={styles.pagination}>
 							{currentPage > 1 ? (
 								<Link
-									href={`?page=${currentPage - 1}`}
+									href={createPageURL(currentPage - 1)}
 									className={styles.pageBtn}
 								>
 									← Previous
