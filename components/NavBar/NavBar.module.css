@@ -96,7 +96,7 @@
 	}
 
 	.title {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		letter-spacing: 0.02em;
 	}
 
@@ -107,7 +107,7 @@
 	}
 
 	.logo {
-		gap: 12px;
+		gap: 10px;
 	}
 
 	.searchPlaceholder {

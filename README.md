@@ -10,6 +10,7 @@ Admin can edit and delete recipes.
 
 ## Functionality
 
+-   Search recipes by title.
 -   Create and view coffee recipes
 -   Editing and deleting recipes for admin
 -   Uploading photos (AWS S3)

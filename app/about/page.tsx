@@ -27,6 +27,7 @@ export default function About() {
 				<div className={styles.card}>
 					<h3>What is interesting</h3>
 					<ul>
+						<li>Recipe search by title</li>
 						<li>Users can create and view recipes</li>
 						<li>Admins can edit and delete recipes</li>
 						<li>Forms with validation (React Hook Form)</li>
