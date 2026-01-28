@@ -10,7 +10,7 @@ export async function getPopularRecipes(limit = 3): Promise<CoffeeRecipe[]> {
 	try {
 		return await prisma.coffeeRecipe.findMany({
 			take: limit,
-			orderBy: { id: "asc" },
+			orderBy: { id: "desc" },
 		});
 	} catch (error) {
 		console.error("Failed to fetch coffee recipes:", error);
