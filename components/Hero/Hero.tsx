@@ -1,25 +1,28 @@
 import Link from "next/link";
-import Slideshow from "@/components/Slideshow/Slideshow";
-import hero1 from "@/public/images/latte.jpg";
-import hero2 from "@/public/images/flat.jpg";
-import hero3 from "@/public/images/default.jpg";
+import Image from "next/image";
+import heroImage from "@/public/images/cover.jpg";
 import styles from "./Hero.module.css";
-
-const images = [
-	{ src: hero1, alt: "Latte" },
-	{ src: hero2, alt: "Flet White" },
-	{ src: hero3, alt: "Espresso" },
-];
 
 export default async function Hero() {
 	return (
 		<section className={styles.hero}>
-			<div className={styles.slideshowWrapper}>
-				<Slideshow images={images} interval={3000} />
+			<div className={styles.bgWrapper}>
+				<Image
+					src={heroImage}
+					alt="Coffee background"
+					fill
+					priority
+					placeholder="blur"
+					className={styles.bgImage}
+				/>
+				<div className={styles.overlay}></div>
 			</div>
 
 			<div className={styles.content}>
-				<h1>Welcome to the world of coffee flavors!</h1>
+				<h1>
+					Welcome to the world of{" "}
+					<span className={styles.accentText}>coffee</span> flavors!
+				</h1>
 				<p>
 					Make coffee like a real barista — right at home, with taste
 					and inspiration.
@@ -30,4 +33,4 @@ export default async function Hero() {
 			</div>
 		</section>
 	);
-} 
+}
