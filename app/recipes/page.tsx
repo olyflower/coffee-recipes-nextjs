@@ -55,7 +55,7 @@ export default async function Recipes({
 						{recipes.map((recipe) => (
 							<Link
 								key={recipe.id}
-								href={`/recipes/${recipe.id}`}
+								href={`/recipes/${recipe.slug}`}
 								className={styles.card}
 							>
 								<div className={styles.wrapper}>

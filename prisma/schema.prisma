@@ -61,6 +61,7 @@ model CoffeeFact {
 model CoffeeRecipe {
   id          Int      @id @default(autoincrement())
   title       String
+  slug        String   @unique
   description String
   steps       String
   createdAt   DateTime @default(now())

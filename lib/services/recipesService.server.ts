@@ -64,3 +64,9 @@ export async function getRecipeById(id: number): Promise<CoffeeRecipe | null> {
 		return null;
 	}
 }
+
+export async function getRecipeBySlug(slug: string) {
+	return await prisma.coffeeRecipe.findFirst({
+		where: { slug },
+	});
+}

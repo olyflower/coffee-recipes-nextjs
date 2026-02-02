@@ -1,19 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getRecipeById } from "@/lib/services/recipesService.server";
+import { getRecipeBySlug } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
 
 export default async function RecipePage({
 	params,
 }: {
-	params: Promise<{ id: string }>;
+	params: Promise<{ slug: string }>;
 }) {
-	const { id } = await params;
+	const { slug } = await params;
 	let recipe: CoffeeRecipe | null = null;
 
 	try {
-		recipe = await getRecipeById(Number(id));
+		recipe = await getRecipeBySlug(slug);
 	} catch (error) {
 		console.error("Failed to fetch recipe:", error);
 	}

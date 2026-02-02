@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import slugify from "slugify";
 import { getCurrentUser } from "@/lib/services/authService";
-import { validateField, validateImageFile } from "@/lib/validators/inputValidator";
+import {
+	validateField,
+	validateImageFile,
+} from "@/lib/validators/inputValidator";
 import { uploadFileToS3 } from "@/lib/services/fileService";
 import { prisma } from "@/lib/prisma";
 import { ALLOWED_IMAGE_EXTENSIONS } from "@/lib/constants/constants";
@@ -11,7 +15,7 @@ export async function POST(req: NextRequest) {
 		if (!user) {
 			return NextResponse.json(
 				{ success: false, message: "User not authenticated" },
-				{ status: 401 }
+				{ status: 401 },
 			);
 		}
 
@@ -42,9 +46,16 @@ export async function POST(req: NextRequest) {
 			photoUrl = "/images/default.jpg";
 		}
 
+		const baseSlug = slugify(title || "recipe", {
+			lower: true,
+			strict: true,
+		});
+		const uniqueSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`;
+
 		const newRecipe = await prisma.coffeeRecipe.create({
 			data: {
 				title: title as string,
+				slug: uniqueSlug,
 				description: description as string,
 				steps: steps as string,
 				photoUrl,
@@ -58,7 +69,7 @@ export async function POST(req: NextRequest) {
 			console.error("add-recipe error:", error);
 			return NextResponse.json(
 				{ success: false, message: error.message },
-				{ status: 500 }
+				{ status: 500 },
 			);
 		}
 	}

@@ -8,6 +8,7 @@ export type CoffeeFact = {
 export type CoffeeRecipe = {
 	id: number;
 	title: string;
+	slug: string;
 	description: string;
 	steps: string;
 	photoUrl: string | null;
