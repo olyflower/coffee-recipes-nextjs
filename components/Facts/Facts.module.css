@@ -72,17 +72,34 @@
 
 @media (max-width: 640px) {
 	.container {
-		padding: 40px 16px;
+		padding: 40px 0;
+		margin-bottom: 60px;
 	}
-	.cards {
-		grid-template-columns: 1fr;
-	}
-	.card:nth-child(n) {
-		grid-column: span 1;
-		padding: 24px;
-	}
+
 	.title {
 		font-size: 1.8rem;
+		padding: 0 24px;
+		margin-bottom: 32px;
+	}
+
+	.cards {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		gap: 16px;
+		padding: 0 24px 20px;
+		scrollbar-width: none;
+	}
+
+	.cards::-webkit-scrollbar {
+		display: none;
+	}
+
+	.card {
+		min-width: 85vw;
+		scroll-snap-align: center;
+		padding: 24px;
+		grid-column: span 1 !important;
 	}
 
 	.subtitle {

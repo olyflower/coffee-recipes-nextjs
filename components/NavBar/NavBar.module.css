@@ -20,7 +20,13 @@
 	transition: transform 0.3s ease;
 }
 
-.logo:hover .logoBadge {
+@media (hover: hover) {
+	.logo:hover .logoBadge {
+		transform: scale(1.05) rotate(-5deg);
+	}
+}
+
+.logo:active .logoBadge {
 	transform: scale(1.05) rotate(-5deg);
 }
 

@@ -1,3 +1,14 @@
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(100px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -24,13 +35,11 @@
 	display: flex;
 	flex-direction: column;
 	border: 1px solid transparent;
-}
-
-.card:hover {
-	transform: translateY(-8px);
-	background: var(--color-white);
-	box-shadow: var(--shadow-medium);
-	border-color: rgba(44, 24, 16, 0.05);
+	transition: 
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.3s ease, 
+    box-shadow 0.3s ease, 
+    border-color 0.3s ease;
 }
 
 .wrapper {
@@ -45,10 +54,6 @@
 .image {
 	object-fit: cover;
 	transition: transform 0.6s ease;
-}
-
-.card:hover .image {
-	transform: scale(1.05);
 }
 
 .card h2 {
@@ -100,6 +105,19 @@
 	color: var(--color-text-muted);
 }
 
+@media (hover: hover) {
+	.card:hover {
+		transform: translateY(-8px);
+		background: var(--color-white);
+		box-shadow: var(--shadow-medium);
+		border-color: rgba(44, 24, 16, 0.05);
+	}
+
+	.card:hover .image {
+		transform: scale(1.05);
+	}
+}
+
 @media (max-width: 850px) {
 	.title {
 		font-size: 2.5rem;
@@ -124,6 +142,31 @@
 @media (max-width: 480px) {
 	.recipes {
 		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+
+	.card {
+		opacity: 0;
+		background: var(--color-white); 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: rgba(44, 24, 16, 0.05);
+
+		@supports (animation-timeline: view()) {
+			animation: fadeInUp both;
+			animation-timeline: view();
+			animation-range: entry 10% contain 40%;
+		}
+
+		@supports not (animation-timeline: view()) {
+			animation: fadeInUp 0.8s ease-out forwards;
+		}
+	}
+
+	.card:nth-child(1) {
+		animation-delay: 0.1s;
+	}
+	.card:nth-child(2) {
+		animation-delay: 0.2s;
 	}
 
 	.wrapper {
