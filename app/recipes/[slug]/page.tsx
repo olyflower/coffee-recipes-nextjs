@@ -54,7 +54,7 @@ export default async function RecipePage({
 			</div>
 
 			<div className={styles.btnContainer}>
-				<Link href="/recipes" className={styles.backBtn}>
+				<Link href="/recipes" className="btnPrimary">
 					← Back to recipes
 				</Link>
 			</div>

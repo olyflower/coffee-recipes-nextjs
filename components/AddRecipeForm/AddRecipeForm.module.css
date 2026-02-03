@@ -74,32 +74,11 @@
 	margin-left: 12px;
 }
 
-.btn {
-	display: inline-block;
-	background-color: var(--color-accent);
-	color: var(--color-white);
-	padding: 18px 44px;
-	border-radius: 100px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	border: none;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	align-self: center;
-	margin-top: 10px;
-	min-width: 240px;
-}
-
-.btn:hover:not(:disabled) {
-	background-color: var(--color-accent-hover);
-	transform: translateY(-3px);
-	box-shadow: 0 10px 20px rgba(237, 147, 45, 0.25);
-}
-
-.btn:disabled {
-	opacity: 0.6;
-	cursor: not-allowed;
+.actionWrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 32px;
 }
 
 @media (max-width: 768px) {
@@ -118,9 +97,5 @@
 	.form textarea {
 		padding: 14px 18px;
 		border-radius: 16px;
-	}
-
-	.btn {
-		min-width: unset;
 	}
 }

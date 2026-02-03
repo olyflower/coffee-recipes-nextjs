@@ -12,12 +12,12 @@ export default function AddRecipeCheck() {
 	return (
 		<div className={styles.wrapper}>
 			{isLoggedIn ? (
-				<Link href="/add-recipe" className={styles.btn}>
+				<Link href="/add-recipe" className="btnPrimary">
 					Add your coffee recipe
 				</Link>
 			) : (
-				<button disabled className={styles.btn}>
-					Add your coffee recipe
+				<button className="btnPrimary disabled">
+					Add your coffee recipe 
 				</button>
 			)}
 

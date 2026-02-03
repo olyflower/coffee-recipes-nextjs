@@ -27,7 +27,7 @@ export default async function Hero() {
 					Make coffee like a real barista — right at home, with taste
 					and inspiration.
 				</p>
-				<Link href="/recipes" className={styles.heroBtn}>
+				<Link href="/recipes" className="btnPrimary">
 					Explore Recipes
 				</Link>
 			</div>

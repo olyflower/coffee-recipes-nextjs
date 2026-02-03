@@ -44,7 +44,7 @@ export default function AddRecipeForm() {
 		} catch (err) {
 			console.error("Failed to add recipe", err);
 		}
-	}; 
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -88,13 +88,15 @@ export default function AddRecipeForm() {
 				<p className={styles.error}>{errors.photo.message}</p>
 			)}
 
-			<button
-				className={styles.btn}
-				type="submit"
-				disabled={isSubmitting || !!errors.photo}
-			>
-				Save the recipe
-			</button>
+			<div className={styles.actionWrapper}>
+				<button
+					className="btnPrimary"
+					type="submit"
+					disabled={isSubmitting || !!errors.photo}
+				>
+					{isSubmitting ? "Saving..." : "Save the recipe"}
+				</button>
+			</div>
 		</form>
 	);
 }

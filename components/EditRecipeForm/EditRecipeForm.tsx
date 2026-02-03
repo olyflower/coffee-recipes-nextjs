@@ -59,7 +59,7 @@ export default function EditRecipeForm({ recipe }: Props) {
 		}
 	};
 
-	return ( 
+	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 			<h1 className={styles.title}>Edit recipe</h1>
 			<div className={styles.inputGroup}>
@@ -123,13 +123,15 @@ export default function EditRecipeForm({ recipe }: Props) {
 				)}
 			</div>
 
-			<button
-				type="submit"
-				disabled={isSubmitting}
-				className={styles.submitBtn}
-			>
-				{isSubmitting ? "Saving..." : "Save Recipe"}
-			</button>
+			<div className={styles.actions}>
+				<button
+					type="submit"
+					disabled={isSubmitting}
+					className="btnPrimary"
+				>
+					{isSubmitting ? "Saving..." : "Save Recipe"}
+				</button>
+			</div>
 		</form>
 	);
 }

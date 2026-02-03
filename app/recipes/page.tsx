@@ -81,14 +81,12 @@ export default async function Recipes({
 							{currentPage > 1 ? (
 								<Link
 									href={createPageURL(currentPage - 1)}
-									className={styles.pageBtn}
+									className="btnPrimary"
 								>
 									← Previous
 								</Link>
 							) : (
-								<span
-									className={`${styles.pageBtn} ${styles.disabled}`}
-								>
+								<span className="btnPrimary disabled">
 									← Previous
 								</span>
 							)}
@@ -101,14 +99,12 @@ export default async function Recipes({
 							{currentPage < totalPages ? (
 								<Link
 									href={`?page=${currentPage + 1}`}
-									className={styles.pageBtn}
+									className="btnPrimary"
 								>
 									Next →
 								</Link>
 							) : (
-								<span
-									className={`${styles.pageBtn} ${styles.disabled}`}
-								>
+								<span className="btnPrimary disabled">
 									Next →
 								</span>
 							)}

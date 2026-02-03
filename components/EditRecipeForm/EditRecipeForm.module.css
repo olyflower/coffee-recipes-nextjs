@@ -57,18 +57,11 @@
 	font-weight: 600;
 }
 
-.form button[type="submit"] {
-	background-color: var(--color-accent);
-	color: var(--color-white);
-	padding: 18px 44px;
-	border-radius: 100px;
-	font-weight: 700;
-	text-transform: uppercase;
-	border: none;
-	cursor: pointer;
-	align-self: center; 
-	min-width: 220px;
-	transition: all 0.3s ease;
+.actions {
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+  margin-top: 16px;
 }
 
 @media (max-width: 600px) {
@@ -86,10 +79,5 @@
 	.form input[type="text"],
 	.form textarea {
 		padding: 14px 18px;
-	}
-
-	.form button[type="submit"] {
-	
-		min-width: unset;
 	}
 }

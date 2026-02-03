@@ -55,7 +55,7 @@ export default function About() {
 			</div>
 
 			<div className={styles.action}>
-				<Link href="/" className={styles.backBtn}>
+				<Link href="/" className="btnPrimary">
 					Return to home page
 				</Link>
 			</div>

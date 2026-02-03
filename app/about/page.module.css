@@ -94,24 +94,6 @@
 	text-align: center;
 }
 
-.backBtn {
-	display: inline-block;
-	background-color: var(--color-accent);
-	color: var(--color-white);
-	padding: 18px 44px;
-	border-radius: 100px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	transition: all 0.3s ease;
-}
-
-.backBtn:hover {
-	background-color: var(--color-accent-hover);
-	transform: translateY(-3px);
-	box-shadow: var(--shadow-medium);
-}
-
 @media (max-width: 850px) {
 	.cards {
 		grid-template-columns: 1fr;
