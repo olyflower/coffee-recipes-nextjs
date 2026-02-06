@@ -30,7 +30,8 @@
 }
 
 .btnSignIn {
-	background-color: var(--color-background-soft);
+	color: var(--color-text);
+	background-color: var(--color-background-soft); 
 	padding: 8px 16px;
 	border-radius: 100px;
 }

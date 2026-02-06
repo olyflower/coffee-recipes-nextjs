@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer/Footer";
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
 import "./globals.css";
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-	themeColor: "#2c1810",
+	themeColor: "#ed932d", 
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -53,12 +54,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html
 			lang="en"
 			className={`${playfair.variable} ${montserrat.variable}`}
+			suppressHydrationWarning
 		>
 			<body className={montserrat.className}>
-				<SessionProviderWrapper>
-					<main>{children}</main>
-					<Footer />
-				</SessionProviderWrapper>
+				<ThemeProvider>
+					<SessionProviderWrapper>
+						<main>{children}</main>
+						<Footer />
+					</SessionProviderWrapper>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

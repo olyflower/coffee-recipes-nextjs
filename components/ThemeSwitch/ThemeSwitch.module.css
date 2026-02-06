@@ -1,0 +1,31 @@
+.toggleBtn {
+  background: var(--color-background-soft);
+  border: 1px solid rgba(44, 24, 16, 0.1);
+  padding: 6px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+}
+
+.toggleBtn:hover {
+  background: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.iconSun {
+  color: #ed932d; 
+}
+
+.iconMoon {
+  color: #6b5a54; 
+}
+
+.placeholder {
+  width: 35px;
+  height: 35px;
+}

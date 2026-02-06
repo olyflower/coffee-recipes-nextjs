@@ -31,6 +31,7 @@ export default function About() {
 						<li>Users can create and view recipes</li>
 						<li>Admins can edit and delete recipes</li>
 						<li>Forms with validation (React Hook Form)</li>
+						<li>Dark and Light mode</li>
 						<li>Cloud photo storage (AWS S3)</li>
 						<li>Secure Auth via Google</li>
 					</ul>

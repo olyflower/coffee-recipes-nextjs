@@ -20,6 +20,12 @@
 	transition: transform 0.3s ease;
 }
 
+.logoTheme {
+	display: flex;
+	align-items: center;
+	gap: 60px;
+}
+
 @media (hover: hover) {
 	.logo:hover .logoBadge {
 		transform: scale(1.05) rotate(-5deg);
@@ -30,22 +36,21 @@
 	transform: scale(1.05) rotate(-5deg);
 }
 
-.logo {
+.logoContainer {
 	display: flex;
 	align-items: center;
 	gap: 16px;
 }
 
-.title {
+.logoTitle {
 	font-family: var(--font-heading);
 	font-size: 1.5rem;
-	font-weight: 700;
 	white-space: nowrap;
 }
 
 .desktop {
 	display: flex;
-	gap: 32px;
+	gap: 28px;
 	align-items: center;
 }
 
@@ -90,6 +95,9 @@
 	.desktop {
 		display: none;
 	}
+	.logoTheme {
+		gap: 80px;
+	}
 }
 
 @media (max-width: 900px) {
@@ -98,27 +106,32 @@
 	}
 
 	.header {
-		padding: 20px 24px;
+		padding: 18px 20px;
 	}
 
-	.title {
-		font-size: 1.1rem;
+	.logoTitle {
+		font-size: 0.8rem;
 		letter-spacing: 0.02em;
 	}
 
 	.logoBadge {
-		width: 40px;
-		height: 40px;
+		width: 35px;
+		height: 35px;
 		border-radius: 12px;
 	}
 
-	.logo {
-		gap: 10px;
+	.logoContainer {
+		gap: 4px;
 	}
 
 	.searchPlaceholder {
 		width: 36px;
 		margin: 0 5px;
 		border-radius: 50%;
+	}
+
+	.logoTheme {
+		display: flex;
+		gap: 68px;
 	}
 }

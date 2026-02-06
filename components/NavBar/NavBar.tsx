@@ -5,6 +5,7 @@ import MobMenu from "@/components/MobMenu/MobMenu";
 import SearchBar from "../SearchBar/SearchBar";
 import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
 import AdminLink from "./AdminLink";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import styles from "./NavBar.module.css";
 
 type NavLinkType = {
@@ -21,16 +22,21 @@ const navLinks: NavLinkType[] = [
 export default function Navbar() {
 	return (
 		<header className={styles.header}>
-			<Link href="/" className={styles.logo}>
-				<div className={styles.logoBadge}>
-					<Coffee
-						size={28}
-						strokeWidth={1.8}
-						color="var(--color-accent)"
-					/>
+			<div className={styles.logoTheme}>
+				<Link href="/" className={styles.logoContainer}>
+					<div className={styles.logoBadge}>
+						<Coffee
+							size={28}
+							strokeWidth={1.8}
+							color="var(--color-accent)"
+						/>
+					</div>
+					<span className={styles.logoTitle}>Coffee recipes</span>
+				</Link>
+				<div className={styles.theme}>
+					<ThemeSwitch />
 				</div>
-				<span className={styles.title}>Coffee recipes</span>
-			</Link>
+			</div>
 
 			<div className={styles.mobile}>
 				<MobMenu navLinks={navLinks} />
@@ -45,6 +51,7 @@ export default function Navbar() {
 					))}
 					<AdminLink />
 				</nav>
+
 				<Suspense
 					fallback={<div className={styles.searchPlaceholder} />}
 				>

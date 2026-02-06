@@ -18,13 +18,13 @@ export default function ToggleButton({ toggleMenu }: ToggleButtonProps) {
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
-				width={42}
-				height={42}
+				width={35}
+				height={35}
 			>
 				<path
 					strokeLinecap="round"
 					strokeLinejoin="round"
-					strokeWidth={2}
+					strokeWidth={1.5}
 					d="M4 6h16M4 12h16M4 18h16"
 				/>
 			</svg>
