@@ -27,12 +27,12 @@
 }
 
 @media (hover: hover) {
-	.logo:hover .logoBadge {
+	.logoContainer:hover .logoBadge {
 		transform: scale(1.05) rotate(-5deg);
 	}
 }
 
-.logo:active .logoBadge {
+.logoContainer:active .logoBadge {
 	transform: scale(1.05) rotate(-5deg);
 }
 
@@ -45,6 +45,7 @@
 .logoTitle {
 	font-family: var(--font-heading);
 	font-size: 1.5rem;
+	font-weight: 700;
 	white-space: nowrap;
 }
 

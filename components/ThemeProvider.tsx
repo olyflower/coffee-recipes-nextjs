@@ -1,16 +1,17 @@
 "use client";
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import type { PropsWithChildren } from "react";
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <NextThemesProvider
-      attribute="data-theme"
-      defaultTheme="dark"  
-      enableSystem={false}  
-      storageKey="coffee-theme"
-    >
-      {children}
-    </NextThemesProvider>
-  );
+export function ThemeProvider({ children }: PropsWithChildren) {
+	return (
+		<NextThemesProvider
+			attribute="data-theme"
+			defaultTheme="dark"
+			enableSystem={false}
+			storageKey="coffee-theme"
+		>
+			{children}
+		</NextThemesProvider>
+	);
 }
