@@ -53,7 +53,7 @@
 
 .text {
 	font-size: 1rem;
-	color: var(--color-text-muted);
+	color: var(--color-text); 
 	margin: 0;
 }
 

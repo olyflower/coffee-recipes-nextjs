@@ -37,7 +37,7 @@
 	position: relative;
 	z-index: 2;
 	text-align: center;
-	color: var(--color-white);
+	color: var(--color-white); 
 	max-width: 900px;
 	font-family: var(--font-body);
 }
@@ -45,7 +45,7 @@
 .content h1 {
 	font-family: var(--font-heading);
 	font-size: 5rem;
-	color: var(--color-white);
+	color: var(--color-accent-hover);
 	line-height: 1.1;
 	margin-bottom: 24px;
 	text-shadow: 0 4px 20px rgba(44, 24, 16, 0.6);
