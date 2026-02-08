@@ -5,7 +5,7 @@ A Next.js educational project for creating and viewing coffee recipes, as well a
 Admin can edit and delete recipes.
 
 <p>
-  <img src="./public/images/preview.png" alt="Coffee Recipes Preview" width="500" />
+  <img src="./public/images/preview.png" alt="Coffee Recipes Preview" width="150" height="200"/>
 </p>
 
 ## Functionality
