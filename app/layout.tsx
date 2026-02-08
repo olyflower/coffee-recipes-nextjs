@@ -42,6 +42,14 @@ export const metadata: Metadata = {
 		description: "Step-by-step coffee brewing guide.",
 		type: "website",
 		url: "https://coffee-recipes-nextjs.vercel.app",
+		images: [
+      {
+        url: '/og-image.png', 
+        width: 1200,
+        height: 630,
+        alt: 'Coffee Recipes Preview',
+      },
+    ],
 	},
 };
 
