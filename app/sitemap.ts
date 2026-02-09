@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const { recipes } = await getRecipes(1, 100);
 
 	const recipeUrls = recipes.map((recipe) => ({
-		url: `${baseUrl}/recipes/${recipe.id}`,
+		url: `${baseUrl}/recipes/${recipe.slug}`,
 		lastModified: new Date(),
 	}));
 

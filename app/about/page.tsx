@@ -1,5 +1,14 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "About Us | Coffee Recipes",
+  description: "An educational project for coffee lovers. Share your passion, discover unique brewing methods, and explore the rich culture of coffee.",
+  alternates: {
+    canonical: "/about", 
+  },
+};
 
 const technologies = [
 	{ name: "Next.js", url: "https://nextjs.org/" },

@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic";
-
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AddRecipeCheck from "@/components/AddRecipeCheck/AddRecipeCheck";
@@ -7,10 +7,18 @@ import { getRecipes } from "../../lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
 
+export const metadata: Metadata = {
+	title: "Coffee Recipes – Brewing Guides & Step-by-Step Methods",
+	description: "Discover classic and unique coffee recipes.",
+	alternates: {
+		canonical: "/recipes",
+	},
+};
+
 export default async function Recipes({
 	searchParams,
 }: {
-	searchParams: { page?: string; search?: string };
+	searchParams: Promise<{ page?: string; search?: string }>;
 }) {
 	const resolvedParams = await searchParams;
 	const currentPage = Number(resolvedParams?.page) || 1;

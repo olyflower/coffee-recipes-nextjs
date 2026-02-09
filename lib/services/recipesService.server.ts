@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { cache } from "react";
 import { CoffeeRecipe } from "@/lib/types";
 
 export type PaginatedRecipes = {
@@ -65,8 +66,8 @@ export async function getRecipeById(id: number): Promise<CoffeeRecipe | null> {
 	}
 }
 
-export async function getRecipeBySlug(slug: string) {
+export const getRecipeBySlug = cache(async (slug: string) => {
 	return await prisma.coffeeRecipe.findFirst({
 		where: { slug },
 	});
-}
+});

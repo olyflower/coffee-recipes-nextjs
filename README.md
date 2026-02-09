@@ -13,7 +13,7 @@ Admin can edit and delete recipes.
 -   Search recipes by title.
 -   Create and view coffee recipes
 -   Editing and deleting recipes for admin
--   Dark & Light Mode - theme switching with system preference support
+-   Dark & Light Mode - switch theme 
 -   Uploading photos (AWS S3)
 -   Authorization via Google (NextAuth.js)
 -   Form handling and validation with React Hook Form 

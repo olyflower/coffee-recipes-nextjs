@@ -1,8 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getRecipeBySlug } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
 import styles from "./page.module.css";
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+	const { slug } = await params;
+	const recipe = await getRecipeBySlug(slug);
+
+	if (!recipe) {
+		return {
+			title: "Recipe Not Found | Coffee Recipes",
+			description: "The requested recipe does not exist.",
+		};
+	}
+
+	const description =
+		recipe.description?.slice(0, 140) || "Step-by-step coffee recipe.";
+
+	return {
+		title: `${recipe.title} | Coffee Recipe`,
+		description,
+		alternates: {
+			canonical: `/recipes/${recipe.slug}`,
+		},
+	};
+}
 
 export default async function RecipePage({
 	params,
