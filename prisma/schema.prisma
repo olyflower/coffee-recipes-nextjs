@@ -21,6 +21,7 @@ model User {
   recipes   CoffeeRecipe[]
   accounts  Account[]
   sessions  Session[]
+  favorites Favorite[]
 }
 
 model Account {
@@ -71,4 +72,19 @@ model CoffeeRecipe {
 
   userId Int?
   user   User?     @relation(fields: [userId], references: [id])
+  favorites Favorite[]
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+
+  userId    Int
+  recipeId  Int
+
+  createdAt DateTime @default(now())
+
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe CoffeeRecipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, recipeId])
 }

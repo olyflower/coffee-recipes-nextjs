@@ -3,6 +3,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getRecipeBySlug } from "@/lib/services/recipesService.server";
 import { CoffeeRecipe } from "@/lib/types";
+import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { isFavorite } from "@/lib/services/favoritesService.server";
 import styles from "./page.module.css";
 
 export async function generateMetadata({
@@ -59,6 +63,12 @@ export default async function RecipePage({
 		);
 	}
 
+	const session = await getServerSession(authOptions);
+
+	const favorite = session?.user?.id
+		? await isFavorite(Number(session.user.id), recipe.id)
+		: false;
+
 	return (
 		<main className={styles.container}>
 			<h1 className={styles.title}>{recipe.title}</h1>
@@ -81,6 +91,7 @@ export default async function RecipePage({
 				{recipe.steps ? recipe.steps : "Instructions coming soon..."}
 			</div>
 
+			<FavoriteButton recipeId={recipe.id} initialFavorite={favorite} />
 			<div className={styles.btnContainer}>
 				<Link href="/recipes" className="btnPrimary">
 					← Back to recipes

@@ -3,11 +3,12 @@ import { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "About Us | Coffee Recipes",
-  description: "An educational project for coffee lovers. Share your passion, discover unique brewing methods, and explore the rich culture of coffee.",
-  alternates: {
-    canonical: "/about", 
-  },
+	title: "About Us | Coffee Recipes",
+	description:
+		"An educational project for coffee lovers. Share your passion, discover unique brewing methods, and explore the rich culture of coffee.",
+	alternates: {
+		canonical: "/about",
+	},
 };
 
 const technologies = [
@@ -18,6 +19,8 @@ const technologies = [
 	{ name: "NextAuth.js", url: "https://next-auth.js.org/" },
 	{ name: "AWS S3", url: "https://aws.amazon.com/s3/" },
 	{ name: "Vercel", url: "https://vercel.com/" },
+	{ name: "Supabase", url: "https://supabase.com/" },
+	{ name: "React Hot Toast", url: "https://react-hot-toast.com/" },
 ];
 
 export default function About() {
@@ -37,12 +40,16 @@ export default function About() {
 					<h3>What is interesting</h3>
 					<ul>
 						<li>Recipe search by title</li>
+						<li>Favorite recipes system</li>
 						<li>Users can create and view recipes</li>
 						<li>Admins can edit and delete recipes</li>
 						<li>Forms with validation (React Hook Form)</li>
+						<li>Secure Google Authentication</li>
+						<li>Toast notifications and interactive UI</li>
 						<li>Dark and Light mode</li>
 						<li>Cloud photo storage (AWS S3)</li>
-						<li>Secure Auth via Google</li>
+						<li>Responsive modern design</li>
+						<li>Server & Client Components architecture</li>
 					</ul>
 				</div>
 

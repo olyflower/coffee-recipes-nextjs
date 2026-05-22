@@ -4,6 +4,7 @@ import { Coffee } from "lucide-react";
 import MobMenu from "@/components/MobMenu/MobMenu";
 import SearchBar from "../SearchBar/SearchBar";
 import GoogleAuthButton from "@/components/GoogleAuthButton/GoogleAuthButton";
+import FavoriteNavButton from "@/components/FavoriteNavButton/FavoriteNavButton";
 import AdminLink from "./AdminLink";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import styles from "./NavBar.module.css";
@@ -50,6 +51,7 @@ export default function Navbar() {
 						</Link>
 					))}
 					<AdminLink />
+					<FavoriteNavButton />
 				</nav>
 
 				<Suspense

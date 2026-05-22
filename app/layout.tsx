@@ -4,6 +4,7 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer/Footer";
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -43,18 +44,18 @@ export const metadata: Metadata = {
 		type: "website",
 		url: "https://coffee-recipes-nextjs.vercel.app",
 		images: [
-      {
-        url: '/og-image.png', 
-        width: 1200,
-        height: 630,
-        alt: 'Coffee Recipes Preview',
-      },
-    ],
+			{
+				url: "/og-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Coffee Recipes Preview",
+			},
+		],
 	},
 };
 
 export const viewport = {
-	themeColor: "#ed932d", 
+	themeColor: "#ed932d",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -67,6 +68,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body className={montserrat.className}>
 				<ThemeProvider>
 					<SessionProviderWrapper>
+						<Toaster
+							position="top-right"
+							toastOptions={{
+								style: {
+									borderRadius: "14px",
+									padding: "14px 18px",
+									fontSize: "0.95rem",
+								},
+							}}
+						/>
 						<main>{children}</main>
 						<Footer />
 					</SessionProviderWrapper>
