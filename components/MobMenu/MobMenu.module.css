@@ -54,3 +54,9 @@
 		transform: translateY(0);
 	}
 }
+
+.favoriteLink {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

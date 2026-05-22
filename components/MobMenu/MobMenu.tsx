@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import ToggleButton from "@/components/ToggleButton/ToggleButton";
 import GoogleAuthButton from "../GoogleAuthButton/GoogleAuthButton";
+import { Heart } from "lucide-react";
 import styles from "./MobMenu.module.css";
 
 type NavLinkType = {
@@ -46,6 +47,12 @@ export default function MobMenu({ navLinks }: MobMenuProps) {
 									Admin
 								</Link>
 							)}
+							<Link href="/favorites" onClick={closeMenu}>
+								<span className={styles.favoriteLink}>
+									<Heart size={18} />
+									Favorites
+								</span>
+							</Link>
 						</nav>
 						<GoogleAuthButton />
 					</div>
